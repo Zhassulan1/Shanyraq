@@ -1,5 +1,5 @@
 # Shanyraq.kz
-######        Shanyraq is a website for the sale, purchase and lease of primary, secondary and commercial real estate in Kazakhstan.
+###### Shanyraq is a website for the sale, purchase and lease of primary, secondary and commercial real estate in Kazakhstan.
 
 
 ### Group members:
