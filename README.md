@@ -3,7 +3,7 @@
 
 
 ## Group members:
-* Zholdybay Atynbek 22B030543
+* Zholdybay Altynbek 22B030543
 * Kainazarov Zhassulan 22B030547
 * Kordabay Nursat 22B030486
   
