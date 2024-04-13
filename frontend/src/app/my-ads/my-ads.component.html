@@ -1,0 +1,28 @@
+<div class="container page-wrapper">
+    <main class="container">
+            
+        <div class="page-top">
+
+            <div *ngIf="this.ads.length === 0" class="my-index-header">  
+                <h1>
+                    У вас пока нет объявлений на сайте
+                </h1>
+            </div>
+            
+            <div class="filler"></div>
+            
+            <div class="new-ad-btn">
+                <a href="/a/new" class="btn btn-primary a-new-btn"> Подать объявление </a>
+            </div>
+            
+        </div>
+             
+        <div *ngIf="this.ads.length === 0" class="content">
+            <p>
+                Это легко исправить, <a href="/a/new">подав их</a>.
+            </p>
+        </div>
+    
+    </main>
+</div>
+    
