@@ -1,1 +1,45 @@
-<p>new-ad works!</p>
+<div class="main">
+        <h2>Подать объявление</h2>
+        <p id="sel-cat">Выберите категорию</p>
+    
+        <div class="hint-box">
+            <p>Поля со звездочкой * — обязательные</p>
+            <p>Срок жизни объявления на сайте — 7 дней. Продлить можно в личном кабинете</p>
+        </div>
+
+    
+    <div class="categories" *ngIf="!categorySelected">
+        <div class="ad">
+            <button (click)="SelectCategory('sell')">Продать</button>
+        </div>
+        <div class="ad">
+            <button (click)="SelectCategory('rent')">Сдать в аренду</button>
+        </div>
+        <div class="ad">
+            <button>Взять в аренду</button>
+        </div>
+    </div>
+    
+    <div class="sub-categories categories" *ngIf="currentCategory && !categorySelected">
+        <ul>
+            <li *ngFor="let t of target" class="ad">
+                <button (click)="loadFields(t); this.selectedSubcategory=t">
+                    {{t.displayed_name}}
+                </button>
+            </li>
+        </ul>
+    </div>
+    
+
+    <app-sell-flat-form
+        [categorySelected]="categorySelected"
+        [currentCategory]="currentCategory"
+        [selectedSubcategory]="selectedSubcategory"
+    ></app-sell-flat-form>
+        
+        
+            
+        
+</div>
+
+

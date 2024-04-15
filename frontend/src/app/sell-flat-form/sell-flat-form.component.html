@@ -1,0 +1,179 @@
+<!-- TODO: change on dploy -->
+<div class="selected" *ngIf="categorySelected"> 
+
+        
+    <br>
+    
+    <div class="sell-nav">
+        {{ this.currentCategory }} > {{ this.selectedSubcategory.displayed_name }}
+
+        <button class="change" (click)="resetCategory()">Изменить</button>
+    </div>
+    
+    <br>
+    <br>
+    
+    <form action="" class="form">
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="live_rooms">Количество комнат</label>
+            </div>
+            
+            <div class="input-wrapper">
+                <input type="number" id="live_rooms" name="live_rooms">
+            </div>
+        </div>        
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="price">Цена</label>
+            </div>
+            
+            <div class="input-wrapper">
+                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <span> тенге </span>
+            </div>
+        </div>        
+        
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="flat_building">Тип строения</label>
+            </div>
+            
+            <div class="input-wrapper">
+                <select name="flat_building" id="flat_building">
+                    <option value=""></option>
+                    <option value="1"> кирпичный </option>
+                    <option value="2"> панельный </option>        
+                    <option value="3"> монолитный </option>
+                    <option value="0"> иное </option>
+                </select>
+            </div> 
+        </div>
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="flat-floor"> Этаж </label>
+            </div>
+            <div class="input-wrapper">
+                <input type="number" name="flat-floor" id="flat-floor">
+                <span> из </span>
+                <input type="number" name="flat-floor-total" id="flat-floor-total">
+            </div>
+        </div>
+
+        <div class="group">
+
+            <label class="label-wrapper">
+                Площадь, м²
+            </label>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare"> Общая </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare" id="live-sqare">
+                </div>
+
+            </div>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare_k"> Кухня </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare_k" id="live-sqare_k">
+                </div>
+            
+            </div>
+        
+        </div>
+        
+        
+        <hr>
+        
+        <h2>Расположение</h2>
+        
+        <div class="location">
+            <select name="cities" id="cities" multiple="multiple">
+                <option value="1">
+                    Алматы
+                </option>
+            </select>
+            
+            <select name="districts" id="districts" multiple="multiple">
+                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d)">
+                    {{d.district_name}}
+                </option>
+            </select>
+            
+            <select multiple="multiple" *ngIf="this.districtSelected" name="subdistricts" id="subdistricts">
+                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.selectedSubdistrict = sd">
+                    {{sd}}
+                </option>
+            </select>
+            
+        </div>
+
+        <div class="group">
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="street_subdist">
+                        Улица или микрорайон
+                    </label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" name="street_subdist" id="street_subdist" value="{{selectedSubdistrict}}">
+                </div>
+            </div>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="street_subdist">
+                        № дома
+                    </label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" name="street_subdist" id="street_subdist">
+                </div>
+            </div>
+        </div>
+        
+
+        <hr>
+        <br>
+        <h2> Фотографии </h2>
+        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+        <input type="file" (change)="onImageSelected($event)" accept="image/*">
+        <button (click)="upload()">Upload Image</button>
+
+        <div class="images">
+            @for (image of imagesUrl; track image) {
+                <img  [src]="image" alt="Uploaded Image">
+            }
+          </div>
+
+
+          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+            <p>Drag and drop to automatic upload</p>
+          </div>
+
+          <div class="group">       
+            <div class="label-wrapper">
+                <label for="text"> Текст объявления </label>
+            </div>
+            <div class="input-wrapper">
+                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+            </div>
+        </div>
+
+    </form>
+    
+    
+</div>
