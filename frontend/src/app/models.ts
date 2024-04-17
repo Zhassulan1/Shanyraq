@@ -1,21 +1,32 @@
-export interface FlatSale {
-  id: number;
-  title: string;
-  number_rooms: number;
-  price: number;
-  type_building: string;
-  floor: number;
-  area: number;
+export interface User {
+    id: number;
+    username: string;
+}
 
-  country: string;
-  city: string;
-  address: string;
-  region: string
-  number_flat: number;
-  main_photo: string;
-  photo: string[];
-  description: string;
+export interface Property {
+    id: number;
+    title: string;
+    type: string;
+    price: string;
+    area: number;
+    rooms_count: number;
+    description: string;
+    main_img: string; 
+    img: string; 
+    parameters: Record<string, any>; 
+}
 
-  owner_name: string;
-  owner_contact: string;
+export interface Listing {
+    id: number;
+    user: User;
+    property: Property;
+    type: string;
+    listing_date: string; 
+    status: 'Active' | 'Not Active'; 
+}
+
+export interface Favorites {
+    id: number;
+    user: User;
+    listing: Listing;
 }

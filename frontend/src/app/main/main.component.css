@@ -1,0 +1,41 @@
+
+.main-container {
+    width: 1260px;
+    min-height: 160px;
+    margin: 0px auto 0 !important;
+    padding: 25px 5px !important;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    font-family: 'Helvetica';
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.42857;
+}
+
+.hot-body {
+    border: 1px solid #e3e3e3;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 10px;
+    
+}
+
+.grid-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    display: block;
+}
+
+.grid-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.meta-data {
+    color: #6c6c6c;
+}
