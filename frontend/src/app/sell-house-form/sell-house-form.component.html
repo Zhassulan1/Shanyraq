@@ -1,0 +1,382 @@
+<!-- TODO: change on dploy -->
+<div class="selected" *ngIf="categorySelected"> 
+
+        
+    <br>
+    
+    <div class="sell-nav">
+        {{ this.currentCategory }} > {{ this.selectedSubcategory.displayed_name }}
+
+        <button class="change" (click)="resetCategory()">Изменить</button>
+    </div>
+    
+    <br>
+    <br>
+    
+    <form action="" class="form">
+        
+        <h2>Расположение</h2>
+        
+        <div class="location">
+            <select name="cities" id="cities" multiple="multiple">
+                <option value="1">
+                    Алматы
+                </option>
+            </select>
+            
+            <select name="districts" id="districts" multiple="multiple">
+                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d)">
+                    {{d.district_name}}
+                </option>
+            </select>
+            
+            <select multiple="multiple" *ngIf="this.districtSelected" name="subdistricts" id="subdistricts">
+                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.selectedSubdistrict = sd">
+                    {{sd}}
+                </option>
+            </select>
+            
+        </div>
+
+        <div class="group">
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="street_subdist">
+                        Улица или микрорайон
+                    </label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" name="street_subdist" id="street_subdist" value="{{selectedSubdistrict}}">
+                </div>
+            </div>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="house_n">
+                        № дома
+                    </label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" name="house_n" id="house_n">
+                </div>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="house_type"> Тип объекта </label>
+            </div>
+            
+            <div class="input-wrapper">
+                <select name="house_type" id="house_type">
+                    <!-- <option value=""></option> -->
+                    <option value="0"> Отдельный дом </option>
+                    <option value="1"> Часть дома </option>        
+                    <option value="3"> Дача </option>
+                </select>
+            </div> 
+        </div>
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="price">Цена</label>
+            </div>
+            
+            <div class="input-wrapper">
+                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <span> тенге </span>
+            </div>
+        </div>     
+
+
+
+        <hr>
+        
+        <h2> О доме </h2>
+        
+
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="house_type"> Состояние дома </label>
+            </div>
+            
+            <div class="input-wrapper">
+                <select name="house_type" id="house_type">
+                    <!-- <option value=""></option> -->
+                    <option value="0"> Отличное </option>
+                    <option value="1"> Хорошее </option>        
+                    <option value="2"> Нужен ремонт </option>
+                    <option value="3"> Черновая отделка </option>
+                    <option value="4"> Под снос </option>
+                    <option value="5"> Недостроенный </option>
+                </select>
+            </div> 
+        </div>
+        
+
+
+
+        <div class="group">
+
+            <label class="label-wrapper">
+                Площадь дома, м²
+            </label>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare"> Общая </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare" id="live-sqare">
+                </div>
+
+            </div>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare_k"> Кухня </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare_k" id="live-sqare_k">
+                </div>
+            
+            </div>
+        
+        </div>
+
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="live_rooms">Количество комнат <br> (гостиные и спальни)</label>
+            </div>
+            
+            <div class="input-wrapper">
+                <input type="number" id="live_rooms" name="live_rooms">
+            </div>
+        </div>  
+
+
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="floor-total"> Количество этажей </label>
+            </div>
+            <div class="input-wrapper">
+                <input type="number" name="floor-total" id="floor-total">
+            </div>
+        </div>
+
+
+        
+
+        <div class="group">
+
+            <label for="toilet_location" class="label-wrapper">
+                Санузел
+            </label>
+
+            <div class="checkbox-label">
+                <div class="label-wrapper">
+                    <label for="toilet_location[0]"> В доме </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="checkbox" name="toilet_location[0]" id="toilet_location[0]">
+                </div>
+
+            </div>
+
+            <div class="checkbox-label">
+                <div class="label-wrapper">
+                    <label for="toilet_location[1]"> На улице </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="checkbox" name="toilet_location[1]" id="toilet_location[1]">
+                </div>
+            
+            </div>
+        
+        </div>
+
+
+
+        <div class="group">
+
+            <label for="house_on_plot" class="label-wrapper">
+                На участке
+            </label>
+
+            <div class="checkbox-label-cloumn">
+
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[0]"> Гараж </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[0]" id="house_on_plot[0]">
+                    </div>
+                </div>
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[1]"> Огород или сад </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[1]" id="house_on_plot[1]">
+                    </div>
+                </div>    
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[2]"> Мангальная зона </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[2]" id="house_on_plot[2]">
+                    </div>
+                </div>    
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[3]"> Бассейн </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[3]" id="house_on_plot[3]">
+                    </div>
+                </div>    
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[4]"> Хозпостройки </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[4]" id="house_on_plot[4]">
+                    </div>
+                </div>    
+                    
+
+            </div>
+
+            <div class="checkbox-label-cloumn">
+
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[5]"> Навес </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[5]" id="house_on_plot[5]">
+                    </div>
+                </div>
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[6]"> Летняя кухня </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[6]" id="house_on_plot[6]">
+                    </div>
+                </div>    
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[7]"> Детская площадка </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[7]" id="house_on_plot[7]">
+                    </div>
+                </div>    
+                    
+
+                <div class="checkbox-label">
+                    <div class="label-wrapper">
+                        <label for="house_on_plot[8]"> Баня или сауна </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="checkbox" name="house_on_plot[8]" id="house_on_plot[8]">
+                    </div>
+                </div>    
+                    
+                
+            </div>
+        
+        </div>
+
+
+
+
+
+        <hr>
+        
+        <h2> Об участке </h2>
+
+
+        
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="floor-total"> Площадь участка </label>
+            </div>
+            <div class="input-wrapper">
+                <input type="number" name="floor-total" id="floor-total">
+                <span> соток </span>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <hr>
+        <br>
+        <h2> Фотографии </h2>
+        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+        <input type="file" (change)="onImageSelected($event)" accept="image/*">
+        <button (click)="upload()">Upload Image</button>
+
+        <div class="images">
+            @for (image of imagesUrl; track image) {
+                <img  [src]="image" alt="Uploaded Image">
+            }
+          </div>
+
+
+          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+            <p>Drag and drop to automatic upload</p>
+          </div>
+
+          <div class="group">       
+            <div class="label-wrapper">
+                <label for="text"> Текст объявления </label>
+            </div>
+            <div class="input-wrapper">
+                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+            </div>
+        </div>
+
+    </form>
+    
+    
+</div>

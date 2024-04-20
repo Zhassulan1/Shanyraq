@@ -15,28 +15,49 @@
         <div class="ad">
             <button (click)="SelectCategory('rent')">Сдать в аренду</button>
         </div>
-        <div class="ad">
+        <!-- <div class="ad">
             <button>Взять в аренду</button>
-        </div>
+        </div> -->
     </div>
     
     <div class="sub-categories categories" *ngIf="currentCategory && !categorySelected">
         <ul>
-            <li *ngFor="let t of target" class="ad">
-                <button (click)="loadFields(t); this.selectedSubcategory=t">
-                    {{t.displayed_name}}
+            <!-- *ngFor="let t of target" -->
+            <li  class="ad">
+                <button (click)="loadFields(target[0]); this.currentSubcategory=target[0]">
+                    {{target[0].displayed_name}}
+                </button>
+            </li>
+
+            <li class="ad">
+                <button (click)="loadFields(target[1]); this.currentSubcategory=target[1]">
+                    {{target[1].displayed_name}}
                 </button>
             </li>
         </ul>
     </div>
     
 
-    <app-sell-flat-form
-        [categorySelected]="categorySelected"
-        [currentCategory]="currentCategory"
-        [selectedSubcategory]="selectedSubcategory"
-    ></app-sell-flat-form>
+    <div *ngIf="this.selectedToLoad == 'sell.flat'">
+
+        <app-sell-flat-form
+            [categorySelected]="categorySelected"
+            [currentCategory]="currentCategory"
+            [selectedSubcategory]="currentSubcategory"
+        ></app-sell-flat-form>
         
+    </div>
+
+    
+    <div *ngIf="this.selectedToLoad == 'sell.house_dacha'">
+
+        <app-sell-house-form 
+            [categorySelected]="categorySelected"
+            [currentCategory]="currentCategory"
+            [selectedSubcategory]="currentSubcategory"
+        ></app-sell-house-form>
+        
+    </div>
         
             
         
