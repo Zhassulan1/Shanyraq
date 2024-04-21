@@ -28,14 +28,14 @@
         
         <div class="group">
             <div class="label-wrapper">
-                <label for="house_type"> Период аренды </label>
+                <label for="rent_duration"> Период аренды </label>
             </div>
             
             <div class="input-wrapper">
-                <select name="house_type" id="house_type">
-                    <option value="0"> Помесячно </option>        
-                    <option value="1"> Посуточно </option>
-                    <option value="2"> По часам </option>
+                <select name="rent_duration" id="rent_duration">
+                    <option value="Помесячно"> Помесячно </option>        
+                    <option value="Посуточно"> Посуточно </option>
+                    <option value="По часам"> По часам </option>
                 </select>
             </div> 
         </div>
@@ -55,22 +55,6 @@
         
         <div class="group">
             <div class="label-wrapper">
-                <label for="flat_building">Тип строения</label>
-            </div>
-            
-            <div class="input-wrapper">
-                <select name="flat_building" id="flat_building">
-                    <option value=""></option>
-                    <option value="1"> кирпичный </option>
-                    <option value="2"> панельный </option>        
-                    <option value="3"> монолитный </option>
-                    <option value="0"> иное </option>
-                </select>
-            </div> 
-        </div>
-        
-        <div class="group">
-            <div class="label-wrapper">
                 <label for="flat-floor"> Этаж </label>
             </div>
             <div class="input-wrapper">
@@ -80,19 +64,20 @@
             </div>
         </div>
 
+
         <div class="group">
 
-            <label class="label-wrapper">
+            <label class="label-wrapper" for="live-sqare">
                 Площадь, м²
             </label>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare"> Общая </label>
+                    <label for="live-sqare_g"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare" id="live-sqare">
+                    <input type="number" name="live-sqare_g" id="live-sqare_g">
                 </div>
             </div>
 
@@ -159,9 +144,7 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="street_subdist">
-                        № дома
-                    </label>
+                    <label for="street_subdist"> № дома </label>
                 </div>
                 <div class="input-wrapper">
                     <input type="text" name="street_subdist" id="street_subdist">
@@ -172,33 +155,38 @@
 
         <hr>
         <br>
-        <h2> Фотографии </h2>
-        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
 
-        <input type="file" (change)="onImageSelected($event)" accept="image/*">
-        <button (click)="upload()">Upload Image</button>
-
-        <div class="images">
-            @for (image of imagesUrl; track image) {
-                <img  [src]="image" alt="Uploaded Image">
-            }
-          </div>
-
-
-          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p>Перетащите фото сюда</p>
-          </div>
-
-          <div class="group">       
+        <div class="group">       
             <div class="label-wrapper">
-                <label for="text"> Текст объявления </label>
+                <label for="description"> Текст объявления </label>
             </div>
             <div class="input-wrapper">
-                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+                <textarea name="description" id="description" maxlength="2000" cols="120" rows="10"></textarea>
             </div>
         </div>
 
     </form>
+
+
+    <h2> Фотографии </h2>
+    <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <button (click)="upload()">Upload Image</button>
+
+    <div class="images">
+        @for (image of imagesUrl; track image) {
+            <img  [src]="image" alt="Uploaded Image">
+        }
+    </div>
+
+
+    <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        <p>Перетащите фото сюда</p>
+    </div>
+
+        
+
     
     
 </div>

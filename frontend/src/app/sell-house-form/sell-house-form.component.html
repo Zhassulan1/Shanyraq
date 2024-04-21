@@ -64,15 +64,14 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="house_type"> Тип объекта </label>
+                <label for="building_type"> Тип объекта </label>
             </div>
             
             <div class="input-wrapper">
-                <select name="house_type" id="house_type">
-                    <!-- <option value=""></option> -->
-                    <option value="0"> Отдельный дом </option>
-                    <option value="1"> Часть дома </option>        
-                    <option value="3"> Дача </option>
+                <select name="building_type" id="building_type">
+                    <option value="Отдельный дом"> Отдельный дом </option>
+                    <option value="Часть дома"> Часть дома </option>        
+                    <option value="Дача"> Дача </option>
                 </select>
             </div> 
         </div>
@@ -104,12 +103,12 @@
             <div class="input-wrapper">
                 <select name="house_type" id="house_type">
                     <!-- <option value=""></option> -->
-                    <option value="0"> Отличное </option>
-                    <option value="1"> Хорошее </option>        
-                    <option value="2"> Нужен ремонт </option>
-                    <option value="3"> Черновая отделка </option>
-                    <option value="4"> Под снос </option>
-                    <option value="5"> Недостроенный </option>
+                    <option value="Отличное"> Отличное </option>
+                    <option value="Хорошее"> Хорошее </option>        
+                    <option value="Нужен ремонт"> Нужен ремонт </option>
+                    <option value="Черновая отделка"> Черновая отделка </option>
+                    <option value="Под снос"> Под снос </option>
+                    <option value="Недостроенный"> Недостроенный </option>
                 </select>
             </div> 
         </div>
@@ -125,22 +124,22 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare"> Общая </label>
+                    <label for="live_sqare"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare" id="live-sqare">
+                    <input type="number" name="live_sqare" id="live_sqare">
                 </div>
 
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare_k"> Кухня </label>
+                    <label for="live_sqare_k"> Кухня </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare_k" id="live-sqare_k">
+                    <input type="number" name="live_sqare_k" id="live_sqare_k">
                 </div>
             
             </div>
@@ -162,10 +161,10 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="floor-total"> Количество этажей </label>
+                <label for="floor_total"> Количество этажей </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="floor-total" id="floor-total">
+                <input type="number" name="floor_total" id="floor_total">
             </div>
         </div>
 
@@ -184,7 +183,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="checkbox" name="toilet_location[0]" id="toilet_location[0]">
+                    <input type="checkbox" name="toilet_location[0]" id="toilet_location[0]" value="В доме">
                 </div>
 
             </div>
@@ -195,12 +194,19 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="checkbox" name="toilet_location[1]" id="toilet_location[1]">
+                    <input type="checkbox" name="toilet_location[1]" id="toilet_location[1]" value="На улице">
                 </div>
             
             </div>
         
         </div>
+
+
+
+
+        <hr>
+        
+        <h2> Об участке </h2>
 
 
 
@@ -219,7 +225,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[0]" id="house_on_plot[0]">
+                        <input type="checkbox" name="house_on_plot[0]" id="house_on_plot[0]" value="Гараж" >
                     </div>
                 </div>
                     
@@ -230,7 +236,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[1]" id="house_on_plot[1]">
+                        <input type="checkbox" name="house_on_plot[1]" id="house_on_plot[1]" value="Огород или сад">
                     </div>
                 </div>    
                     
@@ -241,7 +247,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[2]" id="house_on_plot[2]">
+                        <input type="checkbox" name="house_on_plot[2]" id="house_on_plot[2]" value="Мангальная зона">
                     </div>
                 </div>    
                     
@@ -252,7 +258,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[3]" id="house_on_plot[3]">
+                        <input type="checkbox" name="house_on_plot[3]" id="house_on_plot[3]" value="Бассейн" >
                     </div>
                 </div>    
                     
@@ -263,7 +269,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[4]" id="house_on_plot[4]">
+                        <input type="checkbox" name="house_on_plot[4]" id="house_on_plot[4]" value="Хозпостройки" >
                     </div>
                 </div>    
                     
@@ -279,7 +285,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[5]" id="house_on_plot[5]">
+                        <input type="checkbox" name="house_on_plot[5]" id="house_on_plot[5]" value="Навес" >
                     </div>
                 </div>
                     
@@ -290,7 +296,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[6]" id="house_on_plot[6]">
+                        <input type="checkbox" name="house_on_plot[6]" id="house_on_plot[6]" value="Летняя кухня">
                     </div>
                 </div>    
                     
@@ -301,7 +307,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[7]" id="house_on_plot[7]">
+                        <input type="checkbox" name="house_on_plot[7]" id="house_on_plot[7]" value="Детская площадка">
                     </div>
                 </div>    
                     
@@ -312,7 +318,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[8]" id="house_on_plot[8]">
+                        <input type="checkbox" name="house_on_plot[8]" id="house_on_plot[8]" value="Баня или сауна">
                     </div>
                 </div>    
                     
@@ -320,63 +326,53 @@
             </div>
         
         </div>
-
-
-
-
-
-        <hr>
-        
-        <h2> Об участке </h2>
-
-
         
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="floor-total"> Площадь участка </label>
+                <label for="floor_total"> Площадь участка </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="floor-total" id="floor-total">
+                <input type="number" name="floor_total" id="floor_total" min="1">
                 <span> соток </span>
             </div>
         </div>
 
 
 
-
-
-
-
-        <hr>
-        <br>
-        <h2> Фотографии </h2>
-        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
-
-        <input type="file" (change)="onImageSelected($event)" accept="image/*">
-        <button (click)="upload()">Upload Image</button>
-
-        <div class="images">
-            @for (image of imagesUrl; track image) {
-                <img  [src]="image" alt="Uploaded Image">
-            }
+        <div class="group">       
+          <div class="label-wrapper">
+              <label for="text"> Текст объявления </label>
           </div>
-
-
-          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p>Перетащите фото сюда</p>
+          <div class="input-wrapper">
+              <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
           </div>
+      </div>
 
-          <div class="group">       
-            <div class="label-wrapper">
-                <label for="text"> Текст объявления </label>
-            </div>
-            <div class="input-wrapper">
-                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
-            </div>
+  </form>
+
+
+
+
+    <hr>
+    <br>
+    <h2> Фотографии </h2>
+    <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <button (click)="upload()">Upload Image</button>
+
+    <div class="images">
+        @for (image of imagesUrl; track image) {
+            <img  [src]="image" alt="Uploaded Image">
+        }
         </div>
 
-    </form>
+
+        <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        <p>Перетащите фото сюда</p>
+        </div>
+
     
     
 </div>

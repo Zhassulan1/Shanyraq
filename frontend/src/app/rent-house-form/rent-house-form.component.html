@@ -17,14 +17,14 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="house_type"> Период аренды </label>
+                <label for="rent_duration"> Период аренды </label>
             </div>
             
             <div class="input-wrapper">
-                <select name="house_type" id="house_type">
-                    <option value="0"> Помесячно </option>        
-                    <option value="1"> Посуточно </option>
-                    <option value="2"> По часам </option>
+                <select name="rent_duration" id="rent_duration">
+                    <option value="Помесячно"> Помесячно </option>        
+                    <option value="Посуточно"> Посуточно </option>
+                    <option value="По часам"> По часам </option>
                 </select>
             </div> 
         </div>
@@ -47,7 +47,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 〒">
+                <input type="tel" min="500000" id="price" name="price" placeholder="Например, 12 000 〒">
                 <span> тенге </span>
             </div>
         </div> 
@@ -55,28 +55,28 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="house_year">Год постройки</label>
+                <label for="build_year">Год постройки</label>
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="house_year" name="house_year" min="1850">
+                <input type="number" id="build_year" name="build_year" min="1850">
             </div>
         </div>  
 
 
         <div class="group">
 
-            <label class="label-wrapper">
+            <label class="label-wrapper" for="live-sqare">
                 Площадь дома, м²
             </label>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare"> Общая </label>
+                    <label for="live-sqare_g"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare" id="live-sqare">
+                    <input type="number" name="live-sqare_g" id="live-sqare_g">
                 </div>
             </div>
 
@@ -163,29 +163,9 @@
                 </div>
             </div>
         </div>
+        
 
-
-        <hr>
-        <br>
-
-        <h2> Фотографии </h2>
-        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
-
-        <input type="file" (change)="onImageSelected($event)" accept="image/*">
-        <button (click)="upload()">Upload Image</button>
-
-        <div class="images">
-            @for (image of imagesUrl; track image) {
-                <img  [src]="image" alt="Uploaded Image">
-            }
-          </div>
-
-
-          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p>Перетащите фото сюда</p>
-          </div>
-
-          <div class="group">       
+        <div class="group">       
             <div class="label-wrapper">
                 <label for="text"> Текст объявления </label>
             </div>
@@ -195,6 +175,29 @@
         </div>
 
     </form>
+
+
+
+    <hr>
+    <br>
+
+    <h2> Фотографии </h2>
+    <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <button (click)="upload()">Upload Image</button>
+
+    <div class="images">
+        @for (image of imagesUrl; track image) {
+            <img  [src]="image" alt="Uploaded Image">
+        }
+    </div>
+
+
+    <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        <p>Перетащите фото сюда</p>
+    </div>
+
     
     
 </div>

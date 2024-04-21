@@ -39,16 +39,16 @@
         
         <div class="group">
             <div class="label-wrapper">
-                <label for="flat_building">Тип строения</label>
+                <label for="building_type">Тип строения</label>
             </div>
             
             <div class="input-wrapper">
-                <select name="flat_building" id="flat_building">
+                <select name="building_type" id="building_type">
                     <option value=""></option>
-                    <option value="1"> кирпичный </option>
-                    <option value="2"> панельный </option>        
-                    <option value="3"> монолитный </option>
-                    <option value="0"> иное </option>
+                    <option value="кирпичный"> кирпичный </option>
+                    <option value="панельный"> панельный </option>        
+                    <option value="монолитный"> монолитный </option>
+                    <option value="иное"> иное </option>
                 </select>
             </div> 
         </div>
@@ -72,22 +72,22 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare"> Общая </label>
+                    <label for="live_sqare_g"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare" id="live-sqare">
+                    <input type="number" name="live_sqare_g" id="live_sqare_g">
                 </div>
 
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare_k"> Кухня </label>
+                    <label for="live_sqare_k"> Кухня </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare_k" id="live-sqare_k">
+                    <input type="number" name="live_sqare_k" id="live_sqare_k">
                 </div>
             
             </div>
@@ -144,36 +144,38 @@
             </div>
         </div>
         
-
-        <hr>
-        <br>
-        <h2> Фотографии </h2>
-        <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
-
-        <input type="file" (change)="onImageSelected($event)" accept="image/*">
-        <button (click)="upload()">Upload Image</button>
-
-        <div class="images">
-            @for (image of imagesUrl; track image) {
-                <img  [src]="image" alt="Uploaded Image">
-            }
+        <div class="group">       
+          <div class="label-wrapper">
+              <label for="text"> Текст объявления </label>
           </div>
-
-
-          <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p>Перетащите фото сюда</p>
+          <div class="input-wrapper">
+              <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
           </div>
-
-          <div class="group">       
-            <div class="label-wrapper">
-                <label for="text"> Текст объявления </label>
-            </div>
-            <div class="input-wrapper">
-                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
-            </div>
-        </div>
+      </div>
 
     </form>
+
+
+
+    <hr>
+    <br>
+    <h2> Фотографии </h2>
+    <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
+
+    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <button (click)="upload()">Upload Image</button>
+
+    <div class="images">
+        @for (image of imagesUrl; track image) {
+            <img  [src]="image" alt="Uploaded Image">
+        }
+        </div>
+
+
+        <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        <p>Перетащите фото сюда</p>
+        </div>
+
     
     
 </div>
