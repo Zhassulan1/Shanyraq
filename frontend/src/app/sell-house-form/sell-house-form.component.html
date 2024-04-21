@@ -5,7 +5,7 @@
     <br>
     
     <div class="sell-nav">
-        {{ this.currentCategory }} > {{ this.selectedSubcategory.displayed_name }}
+        Продать > {{ this.selectedSubcategory.displayed_name }}
 
         <button class="change" (click)="resetCategory()">Изменить</button>
     </div>
@@ -364,7 +364,7 @@
 
 
           <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p>Drag and drop to automatic upload</p>
+            <p>Перетащите фото сюда</p>
           </div>
 
           <div class="group">       

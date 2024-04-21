@@ -5,7 +5,7 @@
     <br>
     
     <div class="sell-nav">
-        Продать > {{ this.selectedSubcategory.displayed_name }}
+        Сдать в аренду > {{ this.selectedSubcategory.displayed_name }}
 
         <button class="change" (click)="resetCategory()">Изменить</button>
     </div>
@@ -23,7 +23,23 @@
             <div class="input-wrapper">
                 <input type="number" id="live_rooms" name="live_rooms">
             </div>
-        </div>        
+        </div>  
+        
+        
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="house_type"> Период аренды </label>
+            </div>
+            
+            <div class="input-wrapper">
+                <select name="house_type" id="house_type">
+                    <option value="0"> Помесячно </option>        
+                    <option value="1"> Посуточно </option>
+                    <option value="2"> По часам </option>
+                </select>
+            </div> 
+        </div>
+
         
         <div class="group">
             <div class="label-wrapper">
@@ -31,7 +47,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 〒">
                 <span> тенге </span>
             </div>
         </div>        
@@ -78,8 +94,18 @@
                 <div class="input-wrapper">
                     <input type="number" name="live-sqare" id="live-sqare">
                 </div>
-
             </div>
+
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare_l"> Жилая </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare_l" id="live-sqare_l">
+                </div>
+            </div>
+        
 
             <div class="label-over">
                 <div class="label-wrapper">
@@ -89,9 +115,8 @@
                 <div class="input-wrapper">
                     <input type="number" name="live-sqare_k" id="live-sqare_k">
                 </div>
-            
             </div>
-        
+
         </div>
         
         

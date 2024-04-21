@@ -4,14 +4,14 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Sell, Rent, SubCategories } from './ad-sub-categories';
 import { SellFlatFormComponent } from '../sell-flat-form/sell-flat-form.component';
 import { SellHouseFormComponent } from "../sell-house-form/sell-house-form.component";
-
-
+import { RentFlatFormComponent } from '../rent-flat-form/rent-flat-form.component';
+import { RentHouseFormComponent } from '../rent-house-form/rent-house-form.component';
 @Component({
     selector: 'app-new-ad',
     standalone: true,
     templateUrl: './new-ad.component.html',
     styleUrl: './new-ad.component.css',
-    imports: [NgIf, NgFor, CommonModule, SellFlatFormComponent, SellHouseFormComponent]
+    imports: [NgIf, NgFor, CommonModule, SellFlatFormComponent, SellHouseFormComponent, RentFlatFormComponent, RentHouseFormComponent]
 })
 export class NewAdComponent {
   currentCategory: string = "";
@@ -34,8 +34,8 @@ export class NewAdComponent {
 
   loadFields(subcategory: SubCategories){ 
     this.categorySelected = true;
+    this.currentSubcategory = subcategory;
     this.selectedToLoad = this.currentCategory + "." + subcategory.item;
-    alert(this.selectedToLoad)
   }
 
 }

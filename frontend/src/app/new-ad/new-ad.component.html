@@ -22,18 +22,13 @@
     
     <div class="sub-categories categories" *ngIf="currentCategory && !categorySelected">
         <ul>
-            <!-- *ngFor="let t of target" -->
-            <li  class="ad">
-                <button (click)="loadFields(target[0]); this.currentSubcategory=target[0]">
-                    {{target[0].displayed_name}}
+            
+            <li *ngFor="let t of target"  class="ad">
+                <button (click)="loadFields(t); this.currentSubcategory=t">
+                    {{t.displayed_name}}
                 </button>
             </li>
 
-            <li class="ad">
-                <button (click)="loadFields(target[1]); this.currentSubcategory=target[1]">
-                    {{target[1].displayed_name}}
-                </button>
-            </li>
         </ul>
     </div>
     
@@ -59,6 +54,27 @@
         
     </div>
         
+
+    <div *ngIf="this.selectedToLoad == 'rent.flat'">
+
+        <app-rent-flat-form 
+            [categorySelected]="categorySelected"
+            [currentCategory]="currentCategory"
+            [selectedSubcategory]="currentSubcategory"
+        ></app-rent-flat-form>
+        
+    </div>
+
+
+    <div *ngIf="this.selectedToLoad == 'rent.house'">
+
+        <app-rent-house-form 
+            [categorySelected]="categorySelected"
+            [currentCategory]="currentCategory"
+            [selectedSubcategory]="currentSubcategory"
+        ></app-rent-house-form>
+        
+    </div>
             
         
 </div>

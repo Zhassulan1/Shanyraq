@@ -5,7 +5,7 @@
     <br>
     
     <div class="sell-nav">
-        Продать > {{ this.selectedSubcategory.displayed_name }}
+        Сдать в аренду > {{ this.selectedSubcategory.displayed_name }}
 
         <button class="change" (click)="resetCategory()">Изменить</button>
     </div>
@@ -14,7 +14,22 @@
     <br>
     
     <form action="" class="form">
-        
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="house_type"> Период аренды </label>
+            </div>
+            
+            <div class="input-wrapper">
+                <select name="house_type" id="house_type">
+                    <option value="0"> Помесячно </option>        
+                    <option value="1"> Посуточно </option>
+                    <option value="2"> По часам </option>
+                </select>
+            </div> 
+        </div>
+
+
         <div class="group">
             <div class="label-wrapper">
                 <label for="live_rooms">Количество комнат</label>
@@ -23,7 +38,8 @@
             <div class="input-wrapper">
                 <input type="number" id="live_rooms" name="live_rooms">
             </div>
-        </div>        
+        </div>  
+
         
         <div class="group">
             <div class="label-wrapper">
@@ -31,43 +47,27 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 〒">
                 <span> тенге </span>
             </div>
-        </div>        
-        
-        
+        </div> 
+
+
         <div class="group">
             <div class="label-wrapper">
-                <label for="flat_building">Тип строения</label>
+                <label for="house_year">Год постройки</label>
             </div>
             
             <div class="input-wrapper">
-                <select name="flat_building" id="flat_building">
-                    <option value=""></option>
-                    <option value="1"> кирпичный </option>
-                    <option value="2"> панельный </option>        
-                    <option value="3"> монолитный </option>
-                    <option value="0"> иное </option>
-                </select>
-            </div> 
-        </div>
-        
-        <div class="group">
-            <div class="label-wrapper">
-                <label for="flat-floor"> Этаж </label>
+                <input type="number" id="house_year" name="house_year" min="1850">
             </div>
-            <div class="input-wrapper">
-                <input type="number" name="flat-floor" id="flat-floor">
-                <span> из </span>
-                <input type="number" name="flat-floor-total" id="flat-floor-total">
-            </div>
-        </div>
+        </div>  
+
 
         <div class="group">
 
             <label class="label-wrapper">
-                Площадь, м²
+                Площадь дома, м²
             </label>
 
             <div class="label-over">
@@ -78,7 +78,16 @@
                 <div class="input-wrapper">
                     <input type="number" name="live-sqare" id="live-sqare">
                 </div>
+            </div>
 
+            <div class="label-over">
+                <div class="label-wrapper">
+                    <label for="live-sqare_l"> Жилая </label>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="number" name="live-sqare_l" id="live-sqare_l">
+                </div>
             </div>
 
             <div class="label-over">
@@ -89,14 +98,25 @@
                 <div class="input-wrapper">
                     <input type="number" name="live-sqare_k" id="live-sqare_k">
                 </div>
-            
             </div>
         
         </div>
-        
-        
-        <hr>
-        
+
+
+        <div class="group">
+            <div class="label-wrapper">
+                <label for="floor-total"> Площадь участка </label>
+            </div>
+            <div class="input-wrapper">
+                <input type="number" name="floor-total" id="floor-total">
+                <span> соток </span>
+            </div>
+        </div>
+
+
+
+
+
         <h2>Расположение</h2>
         
         <div class="location">
@@ -134,19 +154,20 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="street_subdist">
+                    <label for="house_n">
                         № дома
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="street_subdist" id="street_subdist">
+                    <input type="text" name="house_n" id="house_n">
                 </div>
             </div>
         </div>
-        
+
 
         <hr>
         <br>
+
         <h2> Фотографии </h2>
         <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
 
