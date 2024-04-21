@@ -1,9 +1,11 @@
 import { Component, Input, inject } from '@angular/core';
-import { SubCategories } from '../new-ad/ad-sub-categories';
-import { DistrictInterface, Districts } from '../sell-flat-form/districts';
-import { ImageUploaderService } from '../services/image-uploader.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
+
+import { SubCategories } from '../new-ad/ad-sub-categories';
+import { DistrictInterface, Districts } from '../sell-flat-form/districts';
+
+import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
 
 @Component({
   selector: 'app-rent-house-form',
@@ -18,7 +20,7 @@ export class RentHouseFormComponent {
   @Input() selectedSubcategory!: SubCategories;
   @Input() categorySelected: boolean = false;
 
-
+  SubmitURL: string = BackendURL;
 
   districtSelected: boolean = false;
   districts: DistrictInterface[] = Districts;

@@ -4,7 +4,8 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Districts, DistrictInterface } from './districts';
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { AppComponent } from '../app.component';
-import { ImageUploaderService } from '../services/image-uploader.service';
+
+import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
 
 
 
@@ -20,7 +21,7 @@ export class SellFlatFormComponent {
   @Input() selectedSubcategory!: SubCategories;
   @Input() categorySelected: boolean = false;
 
-
+  SubmitURL: string = BackendURL;
 
   districtSelected: boolean = false;
   districts: DistrictInterface[] = Districts;

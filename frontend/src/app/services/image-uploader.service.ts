@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { delay, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
+
+export const BackendURL = 'http://127.0.0.1:8000/api/'
+
 @Injectable({
   providedIn: 'root'
 })

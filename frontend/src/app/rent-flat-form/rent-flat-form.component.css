@@ -30,19 +30,55 @@ h2 {
 }
 
 
-/* .top {
-    display: flex;
-    flex-direction: row;
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-.left-top {
-    float: left;
+
+
+.btn-primary {
+    border-color: #0059b3;
 }
 
-.right-top {
-    float: right;
-} */
+.btn {
+    border-radius: 2px;
+    color: #000;
+    font-size: inherit;
+    line-height: inherit;
+}
 
+.btn-blue, .btn-primary {
+    border-bottom: 1px solid #0056a1;
+    background-color: #1a80d9;
+}
+
+
+.btn-primary {
+    padding: 10px 15px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 8px;
+    color: #fff;
+    transition: background-color .2s;
+    text-decoration: none;
+}
+
+
+.btn-primary {
+    font-size: 14px;
+}
 
 .ad {
     font-family: "Open Sans", sans-serif;
@@ -193,7 +229,10 @@ textarea:focus, input:focus {
 }
 
 
-
+.submit-btn {
+    margin: auto;
+    align-self: center;
+}
 
 /* image uploader */
 

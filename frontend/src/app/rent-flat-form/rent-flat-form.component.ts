@@ -1,9 +1,13 @@
 import { Component, Input, inject } from '@angular/core';
-import { SubCategories } from '../new-ad/ad-sub-categories';
-import { DistrictInterface, Districts } from '../sell-flat-form/districts';
-import { ImageUploaderService } from '../services/image-uploader.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
+
+import { SubCategories } from '../new-ad/ad-sub-categories';
+import { DistrictInterface, Districts } from '../sell-flat-form/districts';
+import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
+
+
+export const SubmitURL: string = BackendURL;
 
 @Component({
   selector: 'app-rent-flat-form',

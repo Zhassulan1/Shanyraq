@@ -348,7 +348,7 @@
               <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
           </div>
       </div>
-
+      
   </form>
 
 
@@ -366,12 +366,12 @@
         @for (image of imagesUrl; track image) {
             <img  [src]="image" alt="Uploaded Image">
         }
-        </div>
+    </div>
 
 
-        <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+    <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
         <p>Перетащите фото сюда</p>
-        </div>
+    </div>
 
     
     

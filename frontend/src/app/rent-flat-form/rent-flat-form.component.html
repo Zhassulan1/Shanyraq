@@ -1,5 +1,5 @@
 <!-- TODO: change on dploy -->
-<div class="selected" *ngIf="categorySelected"> 
+<div class="selected" *ngIf="1 ||   categorySelected"> 
 
         
     <br>
@@ -13,7 +13,7 @@
     <br>
     <br>
     
-    <form action="" class="form">
+    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" id="form" class="form">
         
         <div class="group">
             <div class="label-wrapper">
@@ -165,6 +165,8 @@
             </div>
         </div>
 
+        <button type="submit" class="btn btn-primary a-new-btn submit-btn"> Продолжить </button>
+
     </form>
 
 
@@ -184,7 +186,6 @@
     <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
         <p>Перетащите фото сюда</p>
     </div>
-
 
 
 </div>
