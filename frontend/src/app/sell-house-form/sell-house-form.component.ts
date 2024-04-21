@@ -31,6 +31,7 @@ export class SellHouseFormComponent {
 
   resetCategory() {
     this.categorySelected = false;
+    location.reload();
   }
 
 

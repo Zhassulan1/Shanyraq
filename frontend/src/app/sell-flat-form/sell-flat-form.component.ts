@@ -34,6 +34,7 @@ export class SellFlatFormComponent {
 
   resetCategory() {
     this.categorySelected = false;
+    location.reload();
   }
 
 

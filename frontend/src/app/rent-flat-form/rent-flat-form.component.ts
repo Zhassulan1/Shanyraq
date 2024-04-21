@@ -31,6 +31,7 @@ export class RentFlatFormComponent {
 
   resetCategory() {
     this.categorySelected = false;
+    location.reload();
   }
 
 

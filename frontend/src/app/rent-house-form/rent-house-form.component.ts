@@ -32,6 +32,7 @@ export class RentHouseFormComponent {
 
   resetCategory() {
     this.categorySelected = false;
+    location.reload();
   }
 
 
