@@ -17,7 +17,7 @@ import { FormService } from '../services/form.service';
   styleUrl: './rent-house-form.component.css'
 })
 export class RentHouseFormComponent {
-
+  @Input() userID!: string ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 
@@ -39,7 +39,7 @@ export class RentHouseFormComponent {
     street_subdist: new FormControl(''),
     number: new FormControl(''),
     description: new FormControl(''),
-    
+
     districts: new FormControl(''),
     subdistricts: new FormControl(''),
     
@@ -70,7 +70,7 @@ export class RentHouseFormComponent {
       this.applyForm.value.city ?? '',
       address,
       this.applyForm.value.description ?? ''
-    )
+    );
 
     property.parameters = this.compileParameters(
       this.applyForm.value.rent_duration ?? '',
@@ -79,6 +79,14 @@ export class RentHouseFormComponent {
       this.applyForm.value.area_l ?? '',
       this.applyForm.value.area_k ?? ''
     );
+
+    const listing = {
+      user: this.userID,
+      property: property,
+      type: 'rent',
+    };
+
+    console.log('listing: ', listing);
   }
 
 

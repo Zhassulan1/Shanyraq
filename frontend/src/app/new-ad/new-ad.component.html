@@ -42,7 +42,8 @@
     
     <div *ngIf="this.selectedToLoad == 'sell.house_dacha'">
 
-        <app-sell-house-form 
+        <app-sell-house-form
+            [userID]="userID" 
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-sell-house-form>
@@ -52,7 +53,8 @@
 
     <div *ngIf="this.selectedToLoad == 'rent.flat'">
 
-        <app-rent-flat-form 
+        <app-rent-flat-form
+            [userID]="userID" 
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-rent-flat-form>
@@ -62,7 +64,8 @@
 
     <div *ngIf="this.selectedToLoad == 'rent.house'">
 
-        <app-rent-house-form 
+        <app-rent-house-form
+            [userID]="userID" 
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-rent-house-form>

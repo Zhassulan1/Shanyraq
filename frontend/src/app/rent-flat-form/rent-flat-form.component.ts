@@ -20,6 +20,7 @@ export const SubmitURL: string = BackendURL;
   styleUrl: './rent-flat-form.component.css'
 })
 export class RentFlatFormComponent {
+  @Input() userID!: string ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 
@@ -38,7 +39,7 @@ export class RentFlatFormComponent {
     street_subdist: new FormControl(''),
     number: new FormControl(''),
     description: new FormControl(''),
-    
+
     districts: new FormControl(''),
     subdistricts: new FormControl(''),
     
@@ -56,14 +57,13 @@ export class RentFlatFormComponent {
 
   submitForm() {
     const address = this.formService.compileAddress(
-      this.applyForm.value.city?? '',
+      this.applyForm.value.city ?? '',
       this.applyForm.value.street_subdist ?? '',
-      this.district?? '',
-      this.subdistrict?? '',
-      this.applyForm.value.number?? ''
+      this.district ?? '',
+      this.subdistrict ?? '',
+      this.applyForm.value.number ?? ''
     );
 
-      
     const property = this.formService.mainToJson(
       this.applyForm.value.type ?? '',
       this.applyForm.value.price ?? '',
@@ -72,7 +72,7 @@ export class RentFlatFormComponent {
       this.applyForm.value.city ?? '',
       address,
       this.applyForm.value.description ?? ''
-    )
+    );
 
     property.parameters = this.compileParameters(
       this.applyForm.value.building_type ?? '',
@@ -84,6 +84,14 @@ export class RentFlatFormComponent {
       this.applyForm.value.area_l ?? '',
       this.applyForm.value.area_k ?? ''
     );
+
+    const listing = {
+      user: this.userID,
+      property: property,
+      type: 'rent',
+    };
+
+    console.log('listing: ', listing);
   }
 
 

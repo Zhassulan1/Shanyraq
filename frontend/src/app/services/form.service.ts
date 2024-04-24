@@ -21,6 +21,8 @@ export class FormService {
   //   this.applyForm.value.parameters?.area_k ?? '',
   // );
 
+  userID: string = "123456789";
+
   compileAddress(
     city: string,
     street_subdist: string,

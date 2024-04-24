@@ -17,6 +17,7 @@ import { FormService } from '../services/form.service';
   styleUrl: './sell-flat-form.component.css'
 })
 export class SellFlatFormComponent {
+  @Input() userID!: string ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 
@@ -75,6 +76,14 @@ export class SellFlatFormComponent {
       this.applyForm.value.flat_floor_total ?? '',
       this.applyForm.value.area_k ?? ''
     );
+
+    const listing = {
+      user: this.userID,
+      property: property,
+      type: 'rent',
+    };
+
+    console.log('listing: ', listing);
   }
 
 
