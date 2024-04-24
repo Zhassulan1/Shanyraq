@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
 }
 
 
@@ -163,4 +164,37 @@ h1 {
 
 .content a {
     color: #06c;
+}
+
+.ad-listing-link {
+    color:#000;
+    text-decoration: none;
+    margin-bottom: 3%;
+}
+
+
+
+.ad-list {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-size: medium;
+    border-bottom: #8a8a8a75 2px solid;
+}
+
+
+.additional {
+    vertical-align: top;
+}
+
+.side-img {
+    width: 10%;
+    /* min-height: 100%; */
+}
+
+.general {
+    vertical-align: top;
+    font-weight: 600;
 }

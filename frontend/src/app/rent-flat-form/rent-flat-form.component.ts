@@ -1,10 +1,11 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, Query, inject } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
 
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { DistrictInterface, Districts } from '../sell-flat-form/districts';
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 
 export const SubmitURL: string = BackendURL;
@@ -12,7 +13,7 @@ export const SubmitURL: string = BackendURL;
 @Component({
   selector: 'app-rent-flat-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent],
+  imports: [CommonModule, NgFor, NgIf, AppComponent, FormsModule],
   templateUrl: './rent-flat-form.component.html',
   styleUrl: './rent-flat-form.component.css'
 })
@@ -28,6 +29,42 @@ export class RentFlatFormComponent {
   selectedSubdistrict!: string;
   subdistricts: string[] = [];
 
+
+  onSubmit(form: NgForm) {
+    console.log('Your form data : ', form.value);
+    var formJson = JSON.stringify(form.value)
+    console.log('Form:', formJson)
+  }
+
+  // ngOnInit(): void {
+    // const formEl = document.querySelector(".form")!;
+
+    // formEl.addEventListener('submit', event => {
+        // event.preventDefault();
+        
+        // const formData = new FormData(formEl);
+        // const data = Object.fromEntries(formData);
+        
+        // console.log(data);
+    // })
+  // }
+
+
+  // onCLick() {
+    // const formEl: HTMLFormElement = document.querySelector('.form')!;
+
+    // console.log('in retrieve function');
+    // const formData = new FormData(formEl);
+    // const data = Object.fromEntries(formData);
+    // console.log(data);
+
+    // formEl.addEventListener('submit', event => {
+    //    event.preventDefault();
+
+    // })
+  // }
+
+
   loadSubDists(district: DistrictInterface) {
     this.districtSelected = true;
     this.subdistricts = district.subdistricts;
@@ -39,6 +76,11 @@ export class RentFlatFormComponent {
   }
 
 
+  // formSub() {
+  //   var formData = JSON.stringify($("main-form").serializeArray());
+  //   console.log("Data:", formData);
+  //   alert(formData);
+  // }
   // Image upload
 
   

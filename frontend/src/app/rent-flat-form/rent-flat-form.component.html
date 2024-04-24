@@ -1,5 +1,5 @@
 <!-- TODO: change on dploy -->
-<div class="selected" *ngIf="1 ||   categorySelected"> 
+<div class="selected" *ngIf="categorySelected"> 
 
         
     <br>
@@ -12,8 +12,10 @@
     
     <br>
     <br>
-    
-    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" id="form" class="form">
+    <!-- action="http://127.0.0.1:8000/api/new-ad/submit" method="post" -->
+    <!-- id="main-form" -->
+    <!-- #myform = "ngForm" (ngSubmit) = "onSubmit(myform)"" -->
+    <form class="form">
         
         <div class="group">
             <div class="label-wrapper">
@@ -168,7 +170,22 @@
         <button type="submit" class="btn btn-primary a-new-btn submit-btn"> Продолжить </button>
 
     </form>
+    <script>
+        const formEl = document.querySelector(".form");
 
+        function onCLick() {
+            
+        }
+
+        formEl.addEventListener('submit', event => {
+            // event.preventDefault();
+            console.log("in retrieve function")
+            const formData = new FormData(formEl);
+            const data = Object.fromEntries(formData);
+            
+            console.log(data);
+        })
+    </script>
 
     <h2> Фотографии </h2>
     <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
