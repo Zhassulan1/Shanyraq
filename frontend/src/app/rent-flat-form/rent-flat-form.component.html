@@ -15,7 +15,7 @@
     <!-- action="http://127.0.0.1:8000/api/new-ad/submit" method="post" -->
     <!-- id="main-form" -->
     <!-- #myform = "ngForm" (ngSubmit) = "onSubmit(myform)"" -->
-    <form class="form">
+    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" class="form">
         
         <div class="group">
             <div class="label-wrapper">
@@ -167,10 +167,10 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary a-new-btn submit-btn"> Продолжить </button>
+        <button type="submit" id="sub-button" hidden> Продолжить </button>
 
     </form>
-    <script>
+    <!-- <script>
         const formEl = document.querySelector(".form");
 
         function onCLick() {
@@ -185,7 +185,7 @@
             
             console.log(data);
         })
-    </script>
+    </script> -->
 
     <h2> Фотографии </h2>
     <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
@@ -205,4 +205,8 @@
     </div>
 
 
+    <br>
+    <br>
+    
+    <label for="sub-button" class="btn btn-primary a-new-btn submit-btn">Продолжить</label>
 </div>

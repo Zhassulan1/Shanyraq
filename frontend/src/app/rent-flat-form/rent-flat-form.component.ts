@@ -5,7 +5,6 @@ import { AppComponent } from '../app.component';
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { DistrictInterface, Districts } from '../sell-flat-form/districts';
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
-import { FormsModule, NgForm } from '@angular/forms';
 
 
 export const SubmitURL: string = BackendURL;
@@ -13,7 +12,7 @@ export const SubmitURL: string = BackendURL;
 @Component({
   selector: 'app-rent-flat-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent, FormsModule],
+  imports: [CommonModule, NgFor, NgIf, AppComponent],
   templateUrl: './rent-flat-form.component.html',
   styleUrl: './rent-flat-form.component.css'
 })
@@ -30,11 +29,11 @@ export class RentFlatFormComponent {
   subdistricts: string[] = [];
 
 
-  onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value);
-    var formJson = JSON.stringify(form.value)
-    console.log('Form:', formJson)
-  }
+  // onSubmit(form: NgForm) {
+  //   console.log('Your form data : ', form.value);
+  //   var formJson = JSON.stringify(form.value)
+  //   console.log('Form:', formJson)
+  // }
 
   // ngOnInit(): void {
     // const formEl = document.querySelector(".form")!;

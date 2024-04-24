@@ -13,7 +13,7 @@
     <br>
     <br>
     
-    <form action="" class="form">
+    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" class="form">
         
         <div class="group">
             <div class="label-wrapper">
@@ -153,6 +153,9 @@
           </div>
       </div>
 
+
+      <button type="submit" id="sub-button" hidden> Продолжить </button>
+
     </form>
 
 
@@ -169,13 +172,17 @@
         @for (image of imagesUrl; track image) {
             <img  [src]="image" alt="Uploaded Image">
         }
-        </div>
+    </div>
 
 
-        <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+    <div class="drag-drop-area" [class.uploading]="uploading" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
         <p>Перетащите фото сюда</p>
-        </div>
+    </div>
 
     
+    <br>
+    <br>
+
+    <label for="sub-button" class="btn btn-primary a-new-btn submit-btn">Продолжить</label>
     
 </div>

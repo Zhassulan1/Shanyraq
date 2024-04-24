@@ -43,30 +43,18 @@ h2 {
     padding: 6px 12px;
     -webkit-user-select: none;
     user-select: none;
-}
-
-
-
-.btn-primary {
-    border-color: #0059b3;
-}
-
-.btn {
     border-radius: 2px;
     color: #000;
     font-size: inherit;
     line-height: inherit;
 }
 
-.btn-blue, .btn-primary {
-    border-bottom: 1px solid #0056a1;
-    background-color: #1a80d9;
-}
-
 
 .btn-primary {
     padding: 10px 15px;
+    font-size: 14px;
     border-top: none;
+    border-color: #0059b3;
     border-right: none;
     border-left: none;
     border-radius: 8px;
@@ -75,9 +63,21 @@ h2 {
     text-decoration: none;
 }
 
+.btn-blue, .btn-primary {
+    border-bottom: 1px solid #0056a1;
+    background-color: #1a80d9;
+}
 
-.btn-primary {
-    font-size: 14px;
+.submit-btn {
+    display: flex;
+    /* margin: auto; */
+    max-width: 20%;
+    margin: 10%;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
 }
 
 .ad {
@@ -212,15 +212,6 @@ textarea:focus, input:focus {
     border-bottom: 1px dotted #2a81dd;
     text-decoration: none;
 
-}
-
-
-.complex-i-l {
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
-    /* margin-bottom: 10px; */
-    /* margin-top: 10px; */
 }
 
 .label-over {
