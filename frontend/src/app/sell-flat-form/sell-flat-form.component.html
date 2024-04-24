@@ -13,15 +13,15 @@
     <br>
     <br>
     
-    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" class="form">
+    <form [formGroup]="applyForm" (submit)="submitForm()">
         
         <div class="group">
             <div class="label-wrapper">
-                <label for="live_rooms">Количество комнат</label>
+                <label for="rooms_count">Количество комнат</label>
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="live_rooms" name="live_rooms">
+                <input type="number" id="rooms_count" formControlName="rooms_count">
             </div>
         </div>        
         
@@ -31,7 +31,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <input type="tel" min="500000" id="price" formControlName="price" placeholder="Например, 12 000 000 〒">
                 <span> тенге </span>
             </div>
         </div>        
@@ -43,7 +43,7 @@
             </div>
             
             <div class="input-wrapper">
-                <select name="building_type" id="building_type">
+                <select formControlName="building_type" id="building_type">
                     <option value=""></option>
                     <option value="кирпичный"> кирпичный </option>
                     <option value="панельный"> панельный </option>        
@@ -55,12 +55,12 @@
         
         <div class="group">
             <div class="label-wrapper">
-                <label for="flat-floor"> Этаж </label>
+                <label for="flat_floor"> Этаж </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="flat-floor" id="flat-floor">
+                <input type="number" formControlName="flat_floor" id="flat_floor">
                 <span> из </span>
-                <input type="number" name="flat-floor-total" id="flat-floor-total">
+                <input type="number" formControlName="flat_floor_total" id="flat_floor_total">
             </div>
         </div>
 
@@ -72,22 +72,22 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live_sqare_g"> Общая </label>
+                    <label for="area"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live_sqare_g" id="live_sqare_g">
+                    <input type="number" formControlName="area" id="area">
                 </div>
 
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live_sqare_k"> Кухня </label>
+                    <label for="area_k"> Кухня </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live_sqare_k" id="live_sqare_k">
+                    <input type="number" formControlName="area_k" id="area_k">
                 </div>
             
             </div>
@@ -100,20 +100,20 @@
         <h2>Расположение</h2>
         
         <div class="location">
-            <select name="cities" id="cities" multiple="multiple">
-                <option value="1">
+            <select formControlName="city" id="city" multiple="multiple">
+                <option value="Алматы">
                     Алматы
                 </option>
             </select>
             
-            <select name="districts" id="districts" multiple="multiple">
-                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d)">
+            <select formControlName="districts" id="districts" multiple="multiple">
+                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d); this.district = d.district_name">
                     {{d.district_name}}
                 </option>
             </select>
             
-            <select multiple="multiple" *ngIf="this.districtSelected" name="subdistricts" id="subdistricts">
-                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.selectedSubdistrict = sd">
+            <select multiple="multiple" *ngIf="this.district" formControlName="subdistricts" id="subdistricts">
+                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.subdistrict = sd">
                     {{sd}}
                 </option>
             </select>
@@ -128,28 +128,28 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="street_subdist" id="street_subdist" value="{{selectedSubdistrict}}">
+                    <input type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
                 </div>
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="street_subdist">
+                    <label for="number">
                         № дома
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="street_subdist" id="street_subdist">
+                    <input type="text" formControlName="number" id="number">
                 </div>
             </div>
         </div>
         
         <div class="group">       
           <div class="label-wrapper">
-              <label for="text"> Текст объявления </label>
+              <label for="description"> Текст объявления </label>
           </div>
           <div class="input-wrapper">
-              <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+              <textarea formControlName="description" id="description" maxlength="2000" cols="120" rows="10"></textarea>
           </div>
       </div>
 

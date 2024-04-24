@@ -4,15 +4,15 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Districts, DistrictInterface } from './districts';
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { AppComponent } from '../app.component';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
-
-
+import { FormService } from '../services/form.service';
 
 @Component({
   selector: 'app-sell-flat-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent],
+  imports: [CommonModule, NgFor, NgIf, AppComponent, ReactiveFormsModule],
   templateUrl: './sell-flat-form.component.html',
   styleUrl: './sell-flat-form.component.css'
 })
@@ -23,13 +23,81 @@ export class SellFlatFormComponent {
 
   SubmitURL: string = BackendURL;
 
-  districtSelected: boolean = false;
+  district: string = '';
+  subdistrict!: string;
   districts: DistrictInterface[] = Districts;
-  selectedSubdistrict!: string;
   subdistricts: string[] = [];
 
+  formService: FormService = inject(FormService);
+  applyForm = new FormGroup({
+    type: new FormControl('flat'),
+    price: new FormControl(''),
+    area: new FormControl(''),
+    rooms_count: new FormControl(''),
+    city: new FormControl('Almaty'),
+    street_subdist: new FormControl(''),
+    number: new FormControl(''),
+    description: new FormControl(''),
+    districts: new FormControl(''),
+    subdistricts: new FormControl(''),
+    
+    building_type: new FormControl(''),
+    flat_floor: new FormControl(''),
+    flat_floor_total: new FormControl(''),
+    area_k: new FormControl(''),  
+  });
+ 
+
+
+  submitForm() {
+    const address = this.formService.compileAddress(
+      this.applyForm.value.city?? '',
+      this.applyForm.value.street_subdist ?? '',
+      this.district?? '',
+      this.subdistrict?? '',
+      this.applyForm.value.number?? ''
+    );
+
+      
+    const property = this.formService.mainToJson(
+      this.applyForm.value.type ?? '',
+      this.applyForm.value.price ?? '',
+      this.applyForm.value.area ?? '',
+      this.applyForm.value.rooms_count ?? '',
+      this.applyForm.value.city ?? '',
+      address,
+      this.applyForm.value.description ?? ''
+    )
+
+    property.parameters = this.compileParameters(
+      this.applyForm.value.building_type ?? '',
+      this.applyForm.value.flat_floor ?? '',
+      this.applyForm.value.flat_floor_total ?? '',
+      this.applyForm.value.area_k ?? ''
+    );
+  }
+
+
+  compileParameters(
+    building_type: string,
+    flat_floor: string,
+    flat_floor_total: string,
+    area_k: string
+  ) {
+    return {
+      building_type: building_type,
+      flat_floor: flat_floor,
+      flat_floor_total: flat_floor_total,
+      area_k: area_k
+    }
+  }
+
+
+
+  
+
   loadSubDists(district: DistrictInterface) {
-    this.districtSelected = true;
+    // this.districtSelected = true;
     this.subdistricts = district.subdistricts;
   }
 

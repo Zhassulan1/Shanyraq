@@ -13,7 +13,7 @@
     <br>
     <br>
     
-    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" class="form">
+    <form [formGroup]="applyForm" (submit)="submitForm()">
 
         <div class="group">
             <div class="label-wrapper">
@@ -21,7 +21,7 @@
             </div>
             
             <div class="input-wrapper">
-                <select name="rent_duration" id="rent_duration">
+                <select formControlName="rent_duration" id="rent_duration">
                     <option value="Помесячно"> Помесячно </option>        
                     <option value="Посуточно"> Посуточно </option>
                     <option value="По часам"> По часам </option>
@@ -32,11 +32,11 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="live_rooms">Количество комнат</label>
+                <label for="rooms_count">Количество комнат</label>
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="live_rooms" name="live_rooms">
+                <input type="number" id="rooms_count" formControlName="rooms_count">
             </div>
         </div>  
 
@@ -47,7 +47,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" id="price" name="price" placeholder="Например, 12 000 〒">
+                <input type="tel" min="500000" id="price" formControlName="price" placeholder="Например, 12 000 〒">
                 <span> тенге </span>
             </div>
         </div> 
@@ -59,44 +59,44 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="build_year" name="build_year" min="1850">
+                <input type="number" id="build_year" formControlName="build_year" min="1850">
             </div>
         </div>  
 
 
         <div class="group">
 
-            <label class="label-wrapper" for="live-sqare">
+            <label class="label-wrapper" for="area">
                 Площадь дома, м²
             </label>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare_g"> Общая </label>
+                    <label for="area_g"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare_g" id="live-sqare_g">
+                    <input type="number" formControlName="area" id="area">
                 </div>
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare_l"> Жилая </label>
+                    <label for="area_l"> Жилая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare_l" id="live-sqare_l">
+                    <input type="number" formControlName="area_l" id="area_l">
                 </div>
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live-sqare_k"> Кухня </label>
+                    <label for="area_k"> Кухня </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live-sqare_k" id="live-sqare_k">
+                    <input type="number" formControlName="area_k" id="area_k">
                 </div>
             </div>
         
@@ -105,10 +105,10 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="floor-total"> Площадь участка </label>
+                <label for="land_area"> Площадь участка </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="floor-total" id="floor-total">
+                <input type="number" formControlName="land_area" id="land_area">
                 <span> соток </span>
             </div>
         </div>
@@ -120,20 +120,20 @@
         <h2>Расположение</h2>
         
         <div class="location">
-            <select name="cities" id="cities" multiple="multiple">
-                <option value="1">
+            <select formControlName="city" id="city" multiple="multiple">
+                <option value="Алматы">
                     Алматы
                 </option>
             </select>
             
-            <select name="districts" id="districts" multiple="multiple">
-                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d)">
+            <select formControlName="districts" id="districts" multiple="multiple">
+                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d); this.district = d.district_name">
                     {{d.district_name}}
                 </option>
             </select>
             
-            <select multiple="multiple" *ngIf="this.districtSelected" name="subdistricts" id="subdistricts">
-                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.selectedSubdistrict = sd">
+            <select multiple="multiple" *ngIf="this.district" formControlName="subdistricts" id="subdistricts">
+                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.subdistrict = sd">
                     {{sd}}
                 </option>
             </select>
@@ -148,18 +148,18 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="street_subdist" id="street_subdist" value="{{selectedSubdistrict}}">
+                    <input type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
                 </div>
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="house_n">
+                    <label for="number">
                         № дома
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="house_n" id="house_n">
+                    <input type="text" formControlName="number" id="number">
                 </div>
             </div>
         </div>
@@ -167,10 +167,10 @@
 
         <div class="group">       
             <div class="label-wrapper">
-                <label for="text"> Текст объявления </label>
+                <label for="description"> Текст объявления </label>
             </div>
             <div class="input-wrapper">
-                <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+                <textarea formControlName="description" id="description" maxlength="2000" cols="120" rows="10"></textarea>
             </div>
         </div>
 

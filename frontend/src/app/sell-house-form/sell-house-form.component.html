@@ -13,25 +13,25 @@
     <br>
     <br>
     
-    <form action="http://127.0.0.1:8000/api/new-ad/submit" method="post" class="form">
+    <form [formGroup]="applyForm" (submit)="submitForm()">
         
         <h2>Расположение</h2>
         
         <div class="location">
-            <select name="cities" id="cities" multiple="multiple">
-                <option value="1">
+            <select formControlName="city" id="city" multiple="multiple">
+                <option value="Алматы">
                     Алматы
                 </option>
             </select>
             
-            <select name="districts" id="districts" multiple="multiple">
-                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d)">
+            <select formControlName="districts" id="districts" multiple="multiple">
+                <option *ngFor="let d of districts" value="{{d.district}}" (click)="loadSubDists(d); this.district = d.district_name">
                     {{d.district_name}}
                 </option>
             </select>
             
-            <select multiple="multiple" *ngIf="this.districtSelected" name="subdistricts" id="subdistricts">
-                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.selectedSubdistrict = sd">
+            <select multiple="multiple" *ngIf="this.district" formControlName="subdistricts" id="subdistricts">
+                <option *ngFor="let sd of subdistricts" value="{{sd}}" (click)="this.subdistrict = sd">
                     {{sd}}
                 </option>
             </select>
@@ -46,18 +46,18 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="street_subdist" id="street_subdist" value="{{selectedSubdistrict}}">
+                    <input type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
                 </div>
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="house_n">
+                    <label for="number">
                         № дома
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="house_n" id="house_n">
+                    <input type="text" formControlName="number" id="number">
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             </div>
             
             <div class="input-wrapper">
-                <select name="building_type" id="building_type">
+                <select formControlName="building_type" id="building_type">
                     <option value="Отдельный дом"> Отдельный дом </option>
                     <option value="Часть дома"> Часть дома </option>        
                     <option value="Дача"> Дача </option>
@@ -82,7 +82,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" name="price" placeholder="Например, 12 000 000 〒">
+                <input type="tel" min="500000" aftertext="tenge" id="price" formControlName="price" placeholder="Например, 12 000 000 〒">
                 <span> тенге </span>
             </div>
         </div>     
@@ -101,7 +101,7 @@
             </div>
             
             <div class="input-wrapper">
-                <select name="house_type" id="house_type">
+                <select formControlName="house_type" id="house_type">
                     <!-- <option value=""></option> -->
                     <option value="Отличное"> Отличное </option>
                     <option value="Хорошее"> Хорошее </option>        
@@ -124,22 +124,22 @@
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live_sqare"> Общая </label>
+                    <label for="area"> Общая </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live_sqare" id="live_sqare">
+                    <input type="number" formControlName="area" id="area">
                 </div>
 
             </div>
 
             <div class="label-over">
                 <div class="label-wrapper">
-                    <label for="live_sqare_k"> Кухня </label>
+                    <label for="area_k"> Кухня </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" name="live_sqare_k" id="live_sqare_k">
+                    <input type="number" formControlName="area_k" id="area_k">
                 </div>
             
             </div>
@@ -149,11 +149,11 @@
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="live_rooms">Количество комнат <br> (гостиные и спальни)</label>
+                <label for="rooms_count">Количество комнат <br> (гостиные и спальни)</label>
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="live_rooms" name="live_rooms">
+                <input type="number" id="rooms_count" formControlName="rooms_count">
             </div>
         </div>  
 
@@ -164,14 +164,14 @@
                 <label for="floor_total"> Количество этажей </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="floor_total" id="floor_total">
+                <input type="number" formControlName="floor_total" id="floor_total">
             </div>
         </div>
 
 
         
-
-        <div class="group">
+        <!--? Санузел -->
+        <!-- <div class="group">
 
             <label for="toilet_location" class="label-wrapper">
                 Санузел
@@ -183,23 +183,23 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="checkbox" name="toilet_location[0]" id="toilet_location[0]" value="В доме">
+                    <input type="checkbox" formControlName="toilet_location0" id="toilet_location0" value="В доме">
                 </div>
 
             </div>
 
             <div class="checkbox-label">
                 <div class="label-wrapper">
-                    <label for="toilet_location[1]"> На улице </label>
+                    <label for="toilet_location1"> На улице </label>
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="checkbox" name="toilet_location[1]" id="toilet_location[1]" value="На улице">
+                    <input type="checkbox" formControlName="toilet_location1" id="toilet_location1" value="На улице">
                 </div>
             
             </div>
         
-        </div>
+        </div> -->
 
 
 
@@ -209,8 +209,8 @@
         <h2> Об участке </h2>
 
 
-
-        <div class="group">
+        <!--? На участке -->
+        <!-- <div class="group">
 
             <label for="house_on_plot" class="label-wrapper">
                 На участке
@@ -225,7 +225,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[0]" id="house_on_plot[0]" value="Гараж" >
+                        <input type="checkbox" formControlName="house_on_plot[0]" id="house_on_plot[0]" value="Гараж" >
                     </div>
                 </div>
                     
@@ -236,7 +236,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[1]" id="house_on_plot[1]" value="Огород или сад">
+                        <input type="checkbox" formControlName="house_on_plot[1]" id="house_on_plot[1]" value="Огород или сад">
                     </div>
                 </div>    
                     
@@ -247,7 +247,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[2]" id="house_on_plot[2]" value="Мангальная зона">
+                        <input type="checkbox" formControlName="house_on_plot[2]" id="house_on_plot[2]" value="Мангальная зона">
                     </div>
                 </div>    
                     
@@ -258,7 +258,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[3]" id="house_on_plot[3]" value="Бассейн" >
+                        <input type="checkbox" formControlName="house_on_plot[3]" id="house_on_plot[3]" value="Бассейн" >
                     </div>
                 </div>    
                     
@@ -269,7 +269,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[4]" id="house_on_plot[4]" value="Хозпостройки" >
+                        <input type="checkbox" formControlName="house_on_plot[4]" id="house_on_plot[4]" value="Хозпостройки" >
                     </div>
                 </div>    
                     
@@ -285,7 +285,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[5]" id="house_on_plot[5]" value="Навес" >
+                        <input type="checkbox" formControlName="house_on_plot[5]" id="house_on_plot[5]" value="Навес" >
                     </div>
                 </div>
                     
@@ -296,7 +296,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[6]" id="house_on_plot[6]" value="Летняя кухня">
+                        <input type="checkbox" formControlName="house_on_plot[6]" id="house_on_plot[6]" value="Летняя кухня">
                     </div>
                 </div>    
                     
@@ -307,7 +307,7 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[7]" id="house_on_plot[7]" value="Детская площадка">
+                        <input type="checkbox" formControlName="house_on_plot[7]" id="house_on_plot[7]" value="Детская площадка">
                     </div>
                 </div>    
                     
@@ -318,22 +318,22 @@
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="checkbox" name="house_on_plot[8]" id="house_on_plot[8]" value="Баня или сауна">
+                        <input type="checkbox" formControlName="house_on_plot[8]" id="house_on_plot[8]" value="Баня или сауна">
                     </div>
                 </div>    
                     
                 
             </div>
         
-        </div>
+        </div> -->
         
 
         <div class="group">
             <div class="label-wrapper">
-                <label for="floor_total"> Площадь участка </label>
+                <label for="land_area"> Площадь участка </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" name="floor_total" id="floor_total" min="1">
+                <input type="number" formControlName="land_area" id="land_area" min="1">
                 <span> соток </span>
             </div>
         </div>
@@ -342,10 +342,10 @@
 
         <div class="group">       
           <div class="label-wrapper">
-              <label for="text"> Текст объявления </label>
+              <label for="description"> Текст объявления </label>
           </div>
           <div class="input-wrapper">
-              <textarea name="text" id="text" maxlength="2000" cols="120" rows="10"></textarea>
+              <textarea formControlName="description" id="description" maxlength="2000" cols="120" rows="10"></textarea>
           </div>
       </div>
 

@@ -1,16 +1,18 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { DistrictInterface, Districts } from '../sell-flat-form/districts';
 
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
+import { FormService } from '../services/form.service';
 
 @Component({
   selector: 'app-rent-house-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent],
+  imports: [CommonModule, NgFor, NgIf, AppComponent, ReactiveFormsModule],
   templateUrl: './rent-house-form.component.html',
   styleUrl: './rent-house-form.component.css'
 })
@@ -22,15 +24,85 @@ export class RentHouseFormComponent {
 
   SubmitURL: string = BackendURL;
 
-  districtSelected: boolean = false;
+  district: string = '';
+  subdistrict!: string;
   districts: DistrictInterface[] = Districts;
-  selectedSubdistrict!: string;
   subdistricts: string[] = [];
 
+
+  formService: FormService = inject(FormService);
+  applyForm = new FormGroup({
+    type: new FormControl('house'),
+    price: new FormControl(''),
+    area: new FormControl(''),
+    rooms_count: new FormControl(''),
+    city: new FormControl('Almaty'),
+    street_subdist: new FormControl(''),
+    number: new FormControl(''),
+    description: new FormControl(''),
+    districts: new FormControl(''),
+    subdistricts: new FormControl(''),
+    
+    rent_duration: new FormControl(''),
+    build_year: new FormControl(''),
+    land_area: new FormControl(''),
+    area_l: new FormControl(''),  
+    area_k: new FormControl(''),  
+  });
+ 
+
+
+  submitForm() {
+    const address = this.formService.compileAddress(
+      this.applyForm.value.city?? '',
+      this.applyForm.value.street_subdist ?? '',
+      this.district?? '',
+      this.subdistrict?? '',
+      this.applyForm.value.number?? ''
+    );
+
+      
+    const property = this.formService.mainToJson(
+      this.applyForm.value.type ?? '',
+      this.applyForm.value.price ?? '',
+      this.applyForm.value.area ?? '',
+      this.applyForm.value.rooms_count ?? '',
+      this.applyForm.value.city ?? '',
+      address,
+      this.applyForm.value.description ?? ''
+    )
+
+    property.parameters = this.compileParameters(
+      this.applyForm.value.rent_duration ?? '',
+      this.applyForm.value.build_year ?? '',
+      this.applyForm.value.land_area ?? '',
+      this.applyForm.value.area_l ?? '',
+      this.applyForm.value.area_k ?? ''
+    );
+  }
+
+
+  compileParameters(
+    rent_duration: string,
+    build_year: string,
+    land_area: string,
+    area_l: string,
+    area_k: string
+  ) {
+    return {
+      rent_duration: rent_duration,
+      building_type: build_year,
+      land_area: land_area,
+      area_l: area_l,
+      area_k: area_k
+    }
+  }
+
+
   loadSubDists(district: DistrictInterface) {
-    this.districtSelected = true;
     this.subdistricts = district.subdistricts;
   }
+
 
   resetCategory() {
     this.categorySelected = false;

@@ -1,10 +1,13 @@
 import { Component, Input, OnInit, Query, inject } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+
 
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { DistrictInterface, Districts } from '../sell-flat-form/districts';
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
+import { FormService } from '../services/form.service';
 
 
 export const SubmitURL: string = BackendURL;
@@ -12,7 +15,7 @@ export const SubmitURL: string = BackendURL;
 @Component({
   selector: 'app-rent-flat-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent],
+  imports: [CommonModule, NgFor, NgIf, AppComponent, ReactiveFormsModule],
   templateUrl: './rent-flat-form.component.html',
   styleUrl: './rent-flat-form.component.css'
 })
@@ -21,51 +24,97 @@ export class RentFlatFormComponent {
   @Input() selectedSubcategory!: SubCategories;
   @Input() categorySelected: boolean = false;
 
-
-
-  districtSelected: boolean = false;
+  district: string = '';
+  subdistrict!: string;
   districts: DistrictInterface[] = Districts;
-  selectedSubdistrict!: string;
   subdistricts: string[] = [];
 
+  formService: FormService = inject(FormService);
+  applyForm = new FormGroup({
+    type: new FormControl('flat'),
+    price: new FormControl(''),
+    area: new FormControl(''),
+    rooms_count: new FormControl(''),
+    city: new FormControl('Almaty'),
+    street_subdist: new FormControl(''),
+    number: new FormControl(''),
+    description: new FormControl(''),
+    districts: new FormControl(''),
+    subdistricts: new FormControl(''),
+    
+    building_type: new FormControl(''),
+    rent_duration: new FormControl(''),
 
-  // onSubmit(form: NgForm) {
-  //   console.log('Your form data : ', form.value);
-  //   var formJson = JSON.stringify(form.value)
-  //   console.log('Form:', formJson)
-  // }
+    flat_floor: new FormControl(''),
+    flat_floor_total: new FormControl(''),
 
-  // ngOnInit(): void {
-    // const formEl = document.querySelector(".form")!;
-
-    // formEl.addEventListener('submit', event => {
-        // event.preventDefault();
-        
-        // const formData = new FormData(formEl);
-        // const data = Object.fromEntries(formData);
-        
-        // console.log(data);
-    // })
-  // }
+    area_l: new FormControl(''),
+    area_k: new FormControl(''),  
+  });
+ 
 
 
-  // onCLick() {
-    // const formEl: HTMLFormElement = document.querySelector('.form')!;
+  submitForm() {
+    const address = this.formService.compileAddress(
+      this.applyForm.value.city?? '',
+      this.applyForm.value.street_subdist ?? '',
+      this.district?? '',
+      this.subdistrict?? '',
+      this.applyForm.value.number?? ''
+    );
 
-    // console.log('in retrieve function');
-    // const formData = new FormData(formEl);
-    // const data = Object.fromEntries(formData);
-    // console.log(data);
+      
+    const property = this.formService.mainToJson(
+      this.applyForm.value.type ?? '',
+      this.applyForm.value.price ?? '',
+      this.applyForm.value.area ?? '',
+      this.applyForm.value.rooms_count ?? '',
+      this.applyForm.value.city ?? '',
+      address,
+      this.applyForm.value.description ?? ''
+    )
 
-    // formEl.addEventListener('submit', event => {
-    //    event.preventDefault();
+    property.parameters = this.compileParameters(
+      this.applyForm.value.building_type ?? '',
+      this.applyForm.value.rent_duration ?? '',
 
-    // })
-  // }
+      this.applyForm.value.flat_floor ?? '',
+      this.applyForm.value.flat_floor_total ?? '',
 
+      this.applyForm.value.area_l ?? '',
+      this.applyForm.value.area_k ?? ''
+    );
+  }
+
+
+  compileParameters(
+    building_type: string,
+    rent_duration: string,
+
+    flat_floor: string,
+    flat_floor_total: string,
+
+    area_l: string,
+    area_k: string
+  ) {
+    return {
+      building_type: building_type,
+      rent_duration: rent_duration,
+
+      flat_floor: flat_floor,
+      flat_floor_total: flat_floor_total,
+
+      area_l: area_l,
+      area_k: area_k
+    }
+  }
+
+
+
+  
 
   loadSubDists(district: DistrictInterface) {
-    this.districtSelected = true;
+    // this.districtSelected = true;
     this.subdistricts = district.subdistricts;
   }
 
@@ -73,15 +122,6 @@ export class RentFlatFormComponent {
     this.categorySelected = false;
     location.reload();
   }
-
-
-  // formSub() {
-  //   var formData = JSON.stringify($("main-form").serializeArray());
-  //   console.log("Data:", formData);
-  //   alert(formData);
-  // }
-  // Image upload
-
   
   imageUploaderService = inject(ImageUploaderService);
   imagesUrl: Array<string> = [];
