@@ -46,7 +46,7 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
+                    <input required type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" formControlName="number" id="number">
+                    <input required type="text" formControlName="number" id="number">
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" aftertext="tenge" id="price" formControlName="price" placeholder="Например, 12 000 000 〒">
+                <input required type="tel" min="500000" aftertext="tenge" id="price" formControlName="price" placeholder="Например, 12 000 000 〒">
                 <span> тенге </span>
             </div>
         </div>     
@@ -128,7 +128,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" formControlName="area" id="area">
+                    <input required type="number" formControlName="area" id="area">
                 </div>
 
             </div>
@@ -139,7 +139,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" formControlName="area_k" id="area_k">
+                    <input required type="number" formControlName="area_k" id="area_k">
                 </div>
             
             </div>
@@ -153,7 +153,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="rooms_count" formControlName="rooms_count">
+                <input required type="number" id="rooms_count" formControlName="rooms_count">
             </div>
         </div>  
 
@@ -164,43 +164,9 @@
                 <label for="floor_total"> Количество этажей </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" formControlName="floor_total" id="floor_total">
+                <input required type="number" formControlName="floor_total" id="floor_total">
             </div>
         </div>
-
-
-        
-        <!--? Санузел -->
-        <!-- <div class="group">
-
-            <label for="toilet_location" class="label-wrapper">
-                Санузел
-            </label>
-
-            <div class="checkbox-label">
-                <div class="label-wrapper">
-                    <label for="toilet_location[0]"> В доме </label>
-                </div>
-                
-                <div class="input-wrapper">
-                    <input type="checkbox" formControlName="toilet_location0" id="toilet_location0" value="В доме">
-                </div>
-
-            </div>
-
-            <div class="checkbox-label">
-                <div class="label-wrapper">
-                    <label for="toilet_location1"> На улице </label>
-                </div>
-                
-                <div class="input-wrapper">
-                    <input type="checkbox" formControlName="toilet_location1" id="toilet_location1" value="На улице">
-                </div>
-            
-            </div>
-        
-        </div> -->
-
 
 
 
@@ -209,131 +175,12 @@
         <h2> Об участке </h2>
 
 
-        <!--? На участке -->
-        <!-- <div class="group">
-
-            <label for="house_on_plot" class="label-wrapper">
-                На участке
-            </label>
-
-            <div class="checkbox-label-cloumn">
-
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[0]"> Гараж </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[0]" id="house_on_plot[0]" value="Гараж" >
-                    </div>
-                </div>
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[1]"> Огород или сад </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[1]" id="house_on_plot[1]" value="Огород или сад">
-                    </div>
-                </div>    
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[2]"> Мангальная зона </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[2]" id="house_on_plot[2]" value="Мангальная зона">
-                    </div>
-                </div>    
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[3]"> Бассейн </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[3]" id="house_on_plot[3]" value="Бассейн" >
-                    </div>
-                </div>    
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[4]"> Хозпостройки </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[4]" id="house_on_plot[4]" value="Хозпостройки" >
-                    </div>
-                </div>    
-                    
-
-            </div>
-
-            <div class="checkbox-label-cloumn">
-
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[5]"> Навес </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[5]" id="house_on_plot[5]" value="Навес" >
-                    </div>
-                </div>
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[6]"> Летняя кухня </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[6]" id="house_on_plot[6]" value="Летняя кухня">
-                    </div>
-                </div>    
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[7]"> Детская площадка </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[7]" id="house_on_plot[7]" value="Детская площадка">
-                    </div>
-                </div>    
-                    
-
-                <div class="checkbox-label">
-                    <div class="label-wrapper">
-                        <label for="house_on_plot[8]"> Баня или сауна </label>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <input type="checkbox" formControlName="house_on_plot[8]" id="house_on_plot[8]" value="Баня или сауна">
-                    </div>
-                </div>    
-                    
-                
-            </div>
-        
-        </div> -->
-        
-
         <div class="group">
             <div class="label-wrapper">
                 <label for="land_area"> Площадь участка </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" formControlName="land_area" id="land_area" min="1">
+                <input required type="number" formControlName="land_area" id="land_area" min="1">
                 <span> соток </span>
             </div>
         </div>
@@ -361,7 +208,7 @@
     <h2> Фотографии </h2>
     <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
 
-    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <input required type="file" (change)="onImageSelected($event)" accept="image/*">
     <button (click)="upload()">Upload Image</button>
 
     <div class="images">

@@ -36,7 +36,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="rooms_count" formControlName="rooms_count">
+                <input required type="number" id="rooms_count" formControlName="rooms_count">
             </div>
         </div>  
 
@@ -47,7 +47,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="tel" min="500000" id="price" formControlName="price" placeholder="Например, 12 000 〒">
+                <input required type="tel" min="500000" id="price" formControlName="price" placeholder="Например, 12 000 〒">
                 <span> тенге </span>
             </div>
         </div> 
@@ -59,7 +59,7 @@
             </div>
             
             <div class="input-wrapper">
-                <input type="number" id="build_year" formControlName="build_year" min="1850">
+                <input required type="number" id="build_year" formControlName="build_year" min="1850">
             </div>
         </div>  
 
@@ -76,7 +76,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" formControlName="area" id="area">
+                    <input required type="number" formControlName="area" id="area">
                 </div>
             </div>
 
@@ -86,7 +86,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" formControlName="area_l" id="area_l">
+                    <input required type="number" formControlName="area_l" id="area_l">
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
                 </div>
                 
                 <div class="input-wrapper">
-                    <input type="number" formControlName="area_k" id="area_k">
+                    <input required type="number" formControlName="area_k" id="area_k">
                 </div>
             </div>
         
@@ -108,7 +108,7 @@
                 <label for="land_area"> Площадь участка </label>
             </div>
             <div class="input-wrapper">
-                <input type="number" formControlName="land_area" id="land_area">
+                <input required type="number" formControlName="land_area" id="land_area">
                 <span> соток </span>
             </div>
         </div>
@@ -148,7 +148,7 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
+                    <input required type="text" formControlName="street_subdist" id="street_subdist" value="{{this.district}}, {{this.subdistrict}}">
                 </div>
             </div>
 
@@ -159,7 +159,7 @@
                     </label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" formControlName="number" id="number">
+                    <input required type="text" formControlName="number" id="number">
                 </div>
             </div>
         </div>
@@ -187,7 +187,7 @@
     <h2> Фотографии </h2>
     <p> Объявление с фотографиями получает в 5 раз больше просмотров </p>
 
-    <input type="file" (change)="onImageSelected($event)" accept="image/*">
+    <input required type="file" (change)="onImageSelected($event)" accept="image/*">
     <button (click)="upload()">Upload Image</button>
 
     <div class="images">
