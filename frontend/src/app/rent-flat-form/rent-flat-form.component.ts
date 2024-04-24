@@ -22,7 +22,6 @@ export const SubmitURL: string = BackendURL;
 export class RentFlatFormComponent {
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
-  @Input() categorySelected: boolean = false;
 
   district: string = '';
   subdistrict!: string;
@@ -39,6 +38,7 @@ export class RentFlatFormComponent {
     street_subdist: new FormControl(''),
     number: new FormControl(''),
     description: new FormControl(''),
+    
     districts: new FormControl(''),
     subdistricts: new FormControl(''),
     
@@ -114,12 +114,10 @@ export class RentFlatFormComponent {
   
 
   loadSubDists(district: DistrictInterface) {
-    // this.districtSelected = true;
     this.subdistricts = district.subdistricts;
   }
 
   resetCategory() {
-    this.categorySelected = false;
     location.reload();
   }
   

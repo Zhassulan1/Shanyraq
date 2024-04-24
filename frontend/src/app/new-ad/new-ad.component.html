@@ -15,9 +15,6 @@
         <div class="ad">
             <button (click)="SelectCategory('rent')">Сдать в аренду</button>
         </div>
-        <!-- <div class="ad">
-            <button>Взять в аренду</button>
-        </div> -->
     </div>
     
     <div class="sub-categories categories" *ngIf="currentCategory && !categorySelected">
@@ -36,7 +33,6 @@
     <div *ngIf="this.selectedToLoad == 'sell.flat'">
 
         <app-sell-flat-form
-            [categorySelected]="categorySelected"
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-sell-flat-form>
@@ -47,7 +43,6 @@
     <div *ngIf="this.selectedToLoad == 'sell.house_dacha'">
 
         <app-sell-house-form 
-            [categorySelected]="categorySelected"
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-sell-house-form>
@@ -58,7 +53,6 @@
     <div *ngIf="this.selectedToLoad == 'rent.flat'">
 
         <app-rent-flat-form 
-            [categorySelected]="categorySelected"
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-rent-flat-form>
@@ -69,7 +63,6 @@
     <div *ngIf="this.selectedToLoad == 'rent.house'">
 
         <app-rent-house-form 
-            [categorySelected]="categorySelected"
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-rent-house-form>

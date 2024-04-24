@@ -19,7 +19,6 @@ import { FormService } from '../services/form.service';
 export class SellFlatFormComponent {
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
-  @Input() categorySelected: boolean = false;
 
   SubmitURL: string = BackendURL;
 
@@ -38,6 +37,7 @@ export class SellFlatFormComponent {
     street_subdist: new FormControl(''),
     number: new FormControl(''),
     description: new FormControl(''),
+    
     districts: new FormControl(''),
     subdistricts: new FormControl(''),
     
@@ -97,12 +97,10 @@ export class SellFlatFormComponent {
   
 
   loadSubDists(district: DistrictInterface) {
-    // this.districtSelected = true;
     this.subdistricts = district.subdistricts;
   }
 
   resetCategory() {
-    this.categorySelected = false;
     location.reload();
   }
 

@@ -20,7 +20,6 @@ export class RentHouseFormComponent {
 
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
-  @Input() categorySelected: boolean = false;
 
   SubmitURL: string = BackendURL;
 
@@ -40,6 +39,7 @@ export class RentHouseFormComponent {
     street_subdist: new FormControl(''),
     number: new FormControl(''),
     description: new FormControl(''),
+    
     districts: new FormControl(''),
     subdistricts: new FormControl(''),
     
@@ -105,7 +105,6 @@ export class RentHouseFormComponent {
 
 
   resetCategory() {
-    this.categorySelected = false;
     location.reload();
   }
 
