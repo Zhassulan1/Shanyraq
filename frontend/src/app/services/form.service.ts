@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,10 @@ export class FormService {
   //   this.applyForm.value.parameters?.flat_floor_total ?? '',
   //   this.applyForm.value.parameters?.area_k ?? '',
   // );
-
-  userID: number = 123456789;
+  private helper = new JwtHelperService();
+  access = localStorage.getItem("access") ?? '';
+  accessToken = this.helper.decodeToken(this.access);
+  userID = this.accessToken.user_id;
 
   compileAddress(
     street_subdist: string,
@@ -29,19 +33,21 @@ export class FormService {
     subdistrict: string,
     number: string
   ): string {
-    return district + ", " + subdistrict + ", " + number;
+    return district + " " + subdistrict + " " + number;
   }
 
   mainToJson(
+    id: number,
     type: string,
-    price: string,
-    area: string,
-    rooms_count: string,
+    price: number,
+    area: number,
+    rooms_count: number,
     city: string,
     address: string,
-    description: string
+    description: string,
   ): any {
       return {
+        id: id,
         type: type,
         price: price,
         area: area,
@@ -56,8 +62,9 @@ export class FormService {
 
   submitListing(listing: any) {
     const listingJson = JSON.stringify(listing);
-    // alert(listingJson);
+    alert(listingJson);
     console.log('listing: ', listingJson);
+
   }
 
 }

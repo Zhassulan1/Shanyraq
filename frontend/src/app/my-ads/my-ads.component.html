@@ -1,5 +1,5 @@
 <div class="container page-wrapper">
-    <main class="container">
+    <main *ngIf="isLoaded" class="container">
             
         <div class="page-top">
 
@@ -34,30 +34,56 @@
             <br>
             <br>
             
-            <div *ngFor="let ad of ads">
-                <a [routerLink]="[ad.type, ad.id]" class="ad-listing-link">
-
-                    <div class="ad-list">
+            <div *ngFor="let l of listing">
+                
+                <div class="ad-list">
                     
-                        <img src="{{ ad.img[0].url }}" class="side-img">
+
+                    
+                    <a [routerLink]="['/' ,l.type, l.property.type, l.id]" class="ad-listing-link">
+                        <img src="{{ l.property.images[0].url }}" class="side-img">
                         <div class="details">
                             <div class="general">
-                                {{ ad.rooms_count }} - комнатный {{ ad.type }}, {{ ad.area }} м<sup>2</sup> за {{ ad.price }} ₸.
+                                {{ l.property.rooms_count }} - комнатный {{ l.property.type }}, {{ l.property.area }} м<sup>2</sup> за {{ l.property.price }} ₸.
                             </div>
                             
                             <div class="additional">
-                                {{ ad.city }}, {{ ad.address }} <br>
+                                {{ l.property.city }}, {{ l.property.address }} <br>
                                 <!-- Добавлено {{ ad. }} -->
                             </div>
                         </div>
 
+                        
+                    </a>
+
+                    <button (click)="selectedListingId = l.id; update=true">  
+                        <img id="edit" src="../../assets/image/Untitled.png" alt="EDIT">
+                    </button>
+                    <div class="update" *ngIf="selectedListingId === l.id && update">
+                        <form>
+                            <label>Price:</label>
+                            <input type="text" [(ngModel)]="newPrice" name="price">
+                            <br>
+                            <label>Description:</label>
+                            <textarea [(ngModel)]="newDescription" name="description"></textarea>
+                            <br>
+                            <button (click)="onUpdate(l.id, l)">Update</button>
+                        </form>
+                    </div>  
+                    <button (click)="onDelete(l.id)">  
+                        <img id="edit" src="../../assets/image/delete_icon.jpeg" alt="DELETE">
+                    </button>
+
                     </div>
                     
-                </a>
             </div>
                 
         </div>
 
     </main>
+
+    <div *ngIf="!isLoaded">
+        loading
+    </div>
 </div>
     

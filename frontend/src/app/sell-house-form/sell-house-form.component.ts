@@ -9,6 +9,8 @@ import { DistrictInterface, Districts } from '../sell-flat-form/districts';
 
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
 import { FormService } from '../services/form.service';
+import { Listing } from '../models';
+import { ListingService } from '../listing.service';
 
 @Component({
   selector: 'app-sell-house-form',
@@ -30,13 +32,14 @@ export class SellHouseFormComponent {
   districts: DistrictInterface[] = Districts;
   subdistricts: string[] = [];
 
-
   formService: FormService = inject(FormService);
+  constructor(private listingService: ListingService) { }
+
   applyForm = new FormGroup({
     type: new FormControl('house'),
-    price: new FormControl(''),
-    area: new FormControl(''),
-    rooms_count: new FormControl(''),
+    price: new FormControl(0),
+    area: new FormControl(0),
+    rooms_count: new FormControl(0),
     city: new FormControl('Almaty'),
     street_subdist: new FormControl(''),
     number: new FormControl(''),
@@ -64,14 +67,19 @@ export class SellHouseFormComponent {
 
       
     const property = this.formService.mainToJson(
+      1,
       this.applyForm.value.type ?? '',
-      this.applyForm.value.price ?? '',
-      this.applyForm.value.area ?? '',
-      this.applyForm.value.rooms_count ?? '',
+      this.applyForm.value.price ?? 0,
+      this.applyForm.value.area ?? 0,
+      this.applyForm.value.rooms_count ?? 0,
       this.applyForm.value.city ?? '',
       address,
-      this.applyForm.value.description ?? ''
+      this.applyForm.value.description ?? '',
     );
+
+    property.images = [
+      "https://www.bankrate.com/2023/06/12125257/buying-a-house-worth-it.jpg?auto=webp&optimize=high"
+   ]
 
     property.parameters = this.compileParameters(
       this.applyForm.value.building_type ?? '',
@@ -81,14 +89,21 @@ export class SellHouseFormComponent {
       this.applyForm.value.area_k ?? ''
     );
 
-    const listing = {
+    const listing: Listing = {
+      id: 0,
       user: this.userID,
       property: property,
       type: 'sale',
+      listing_date: "2024-04-25"
     };
 
     console.log('listing: ', listing);
     this.formService.submitListing(listing);
+
+    this.listingService.createListing(listing).subscribe(
+      (listing: Listing) => {
+        console.log(listing);
+      });
 
     window.location.href = "my";
   }

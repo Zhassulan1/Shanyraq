@@ -198,3 +198,15 @@ h1 {
     vertical-align: top;
     font-weight: 600;
 }
+
+button {
+    float: left;
+    max-height: 40px;
+    width: 40;
+    padding: 0;
+}
+
+#edit {
+    width: 20px;
+    resize: none;
+}

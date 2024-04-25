@@ -8,6 +8,9 @@ import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
 import { FormService } from '../services/form.service';
+import { ListingService } from '../listing.service';
+import { Listing, Images } from '../models';
+// import (time) 
 
 @Component({
   selector: 'app-sell-flat-form',
@@ -28,12 +31,17 @@ export class SellFlatFormComponent {
   districts: DistrictInterface[] = Districts;
   subdistricts: string[] = [];
 
+
+
+
   formService: FormService = inject(FormService);
+  constructor(private listingService: ListingService) { }
+
   applyForm = new FormGroup({
-    type: new FormControl('flat'),
-    price: new FormControl(''),
-    area: new FormControl(''),
-    rooms_count: new FormControl(''),
+    type: new FormControl('apartment'),
+    price: new FormControl(0),
+    area: new FormControl(0),
+    rooms_count: new FormControl(0),
     city: new FormControl('Almaty'),
     street_subdist: new FormControl(''),
     number: new FormControl(''),
@@ -60,14 +68,18 @@ export class SellFlatFormComponent {
 
       
     const property = this.formService.mainToJson(
+      1,
       this.applyForm.value.type ?? '',
-      this.applyForm.value.price ?? '',
-      this.applyForm.value.area ?? '',
-      this.applyForm.value.rooms_count ?? '',
-      this.applyForm.value.city ?? '',
+      this.applyForm.value.price ?? 0,
+      this.applyForm.value.area ?? 0,
+      this.applyForm.value.rooms_count ?? 0,
+      'Almaty',
       address,
-      this.applyForm.value.description ?? ''
+      this.applyForm.value.description ?? '',
     )
+    property.images = [
+       "https://www.bankrate.com/2023/06/12125257/buying-a-house-worth-it.jpg?auto=webp&optimize=high"
+    ]
 
     property.parameters = this.compileParameters(
       this.applyForm.value.building_type ?? '',
@@ -76,14 +88,22 @@ export class SellFlatFormComponent {
       this.applyForm.value.area_k ?? ''
     );
 
-    const listing = {
+    const listing: Listing = {
+      id: 0,
       user: this.userID,
       property: property,
       type: 'sale',
+      listing_date: '2024-04-25'
     };
+
 
     console.log('listing: ', listing);
     this.formService.submitListing(listing);
+
+    this.listingService.createListing(listing).subscribe(
+      (listing: Listing) => {
+        console.log(listing);
+      });
 
     window.location.href = "my";
   }
@@ -142,7 +162,7 @@ export class SellFlatFormComponent {
     this.uploading = true;
     for (let index = 0; index < images.length; index++) {
       const element = images[index];
-      this.imageUploaderService.uploadImage(element).subscribe((p) => {
+      this.imageUploaderService.uploadImage(element).subscribe((p: string) => {
         this.imagesUrl.push(p);
         this.uploading = false;
       });

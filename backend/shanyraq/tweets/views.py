@@ -23,8 +23,12 @@ class ListingList(APIView):
         return Response(listing_serializer.data)
 
     def post(self, request):
+        
+        request.data.pop('id')
+        request.data.get('property').pop('id')
         property_data = request.data.get('property')
         images = property_data.pop('images')
+        print(request.data)
         property_serializer = PropertySerializer(data=property_data)
 
         if property_serializer.is_valid():
@@ -36,13 +40,19 @@ class ListingList(APIView):
             if image_serializer.is_valid():
                 image_serializer.save()
             else:
+                print(property_serializer.errors)
                 return Response({'image_errors': image_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
             
             listing_serializer = ListingListSerializer(data=request.data)
             if listing_serializer.is_valid():
                 listing = listing_serializer.save(property=property)
                 return Response(ListingListSerializer(listing).data, status=status.HTTP_201_CREATED)
+            
+            # print(property_serializer.errors)
+
             return Response({'listing_errors': listing_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        # print(property_serializer.errors)
+        
         return Response({'property_errors': property_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class ListingDetail(APIView):
