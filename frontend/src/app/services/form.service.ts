@@ -56,6 +56,7 @@ export class FormService {
 
   submitListing(listing: any) {
     const listingJson = JSON.stringify(listing);
+    // alert(listingJson);
     console.log('listing: ', listingJson);
   }
 

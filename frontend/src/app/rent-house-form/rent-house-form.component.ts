@@ -87,6 +87,8 @@ export class RentHouseFormComponent {
 
     console.log('listing: ', listing);
     this.formService.submitListing(listing);
+
+    window.location.href = "my";
   }
 
 

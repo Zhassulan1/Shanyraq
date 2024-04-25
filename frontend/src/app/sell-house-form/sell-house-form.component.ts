@@ -1,10 +1,11 @@
 import { Component, Input, inject } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { SubCategories } from '../new-ad/ad-sub-categories';
 import { DistrictInterface, Districts } from '../sell-flat-form/districts';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { ImageUploaderService, BackendURL } from '../services/image-uploader.service';
 import { FormService } from '../services/form.service';
@@ -12,7 +13,7 @@ import { FormService } from '../services/form.service';
 @Component({
   selector: 'app-sell-house-form',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, AppComponent, ReactiveFormsModule],
+  imports: [CommonModule, NgFor, NgIf, AppComponent, ReactiveFormsModule, RouterLink],
   templateUrl: './sell-house-form.component.html',
   styleUrl: './sell-house-form.component.css'
 })
@@ -88,6 +89,8 @@ export class SellHouseFormComponent {
 
     console.log('listing: ', listing);
     this.formService.submitListing(listing);
+
+    window.location.href = "my";
   }
 
 
