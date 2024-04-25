@@ -60,6 +60,7 @@ class ListingDetailSerializer(serializers.ModelSerializer):
 
 
 class FavoritesSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
     user_id = serializers.IntegerField()
     listing_id = serializers.IntegerField()
 

@@ -32,6 +32,10 @@ export class ListingService {
   }
 
   getFavorites(userId: number): Observable<Favorites[]> {
-    return this.client.get<Favorites[]>(`${this.BASE_URL}/tweets/favorites/${userId}/0/`)
+    return this.client.get<Favorites[]>(`${this.BASE_URL}/tweets/favorites/${userId}/`)
+  }
+
+  addFavorites(userId: number, listingId: number): Observable<Favorites> {
+    return this.client.post<Favorites>(`${this.BASE_URL}/tweets/favorites/`, {"user_id": userId, "listing_id": listingId})
   }
 }

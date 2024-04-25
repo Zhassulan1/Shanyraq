@@ -27,6 +27,7 @@ export interface Listing {
 }
 
 export interface Favorites {
+    id: number;
     user_id: number;
     listing_id: number;
 }
