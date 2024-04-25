@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { SearchComponent } from '../search/search.component';
-import { Listing } from '../models';
-import { LISTINGS, PROPERTIES } from '../fake-db';
+import { Listing, Property } from '../models';
+import { ListingService } from '../listing.service';
+import { SearchService } from '../search.service';
+// import { LISTINGS, PROPERTIES } from '../fake-db';
 
 @Component({
   selector: 'app-listing',
@@ -11,7 +14,8 @@ import { LISTINGS, PROPERTIES } from '../fake-db';
   imports: [
     CommonModule,
     RouterModule,
-    SearchComponent
+    SearchComponent,
+    FormsModule
   ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.css'
@@ -19,22 +23,56 @@ import { LISTINGS, PROPERTIES } from '../fake-db';
 export class ListingComponent {
   listings!: Listing[];
   loaded: boolean = false;
-  type: string | null = '';
+  listingType: string | null = '';
+  propertyType: string | null = '';
+  criteria: any;
+  update: boolean = false;
+  newPrice: number = 0;
+  newDescription: string = '';
+  selectedListingId: number = -1;
 
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute,
+    private listingService: ListingService,
+    private searchService: SearchService
+ 
+  ){
 
   }
 
   ngOnInit(): void {
     this.loaded = false;
-    this.listings = LISTINGS;
-    this.loaded = true;
+    this.criteria = this.searchService.currentSearchCriteria;
+    this.listingService.getListings().subscribe((listings: Listing[]) => {
+      this.listings = listings;
+      console.log(this.criteria);
+      this.loaded = true;
+    })
 
     this.route.paramMap.subscribe((params) => {
-      this.type = String(params.get("listingType"))|| null;
-      console.log(this.type);
+      this.listingType = String(params.get("listingType"))|| null;
+      this.propertyType = String(params.get("propertyType"))|| null;
+      console.log(this.listingType);
      })
-     
-    
   }
+
+  onUpdate(id: number, listing: Listing): void {
+    listing.property.price = this.newPrice;
+    listing.property.description = this.newDescription;
+    this.listingService.updateListing(id, listing).subscribe((updatedListing: Property)=>{
+      const index = this.listings.findIndex(listing => listing.id === id);
+      if (index !== -1) {
+        this.listings[index].property.price = updatedListing.price;
+        this.listings[index].property.description = updatedListing.description;
+      }
+    })
+        this.update = !this.update;
+  }
+
+  onDelete(listingId: number): void {
+    this.listingService.deleteListing(listingId).subscribe((message: any) => {
+      console.log(message)
+    })
+    this.listings = this.listings.filter((listing) => listing.id !== listingId);
+  }
+
 }

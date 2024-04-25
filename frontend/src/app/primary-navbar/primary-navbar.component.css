@@ -9,6 +9,7 @@ header {
     font-family: 'Helvetica';
     box-sizing: border-box;
     line-height: 1.42857;
+    border-bottom: 1px solid #ccc;
 }
 
 a {

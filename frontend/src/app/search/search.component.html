@@ -2,19 +2,19 @@
     <form>
         <div class="search-inputs">
             <div class="selections">
-                <select>
+                <select [(ngModel)]="selectedAction" [ngModelOptions]="{standalone: true}">
                     <option>Купить</option>
                     <option>Арендовать</option>
                 </select>
-                <select>
+                <select [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}">
                     <option>Квартиру</option>
                     <option>Дом</option>
                 </select>
                 <a>
-                    <span>Тараз</span>
+                    <span>Алматы</span>
                     <span class="caret"></span>
                 </a>
-                <select>
+                <!-- <select>
                     <option>Любой комнатности</option>
                     <option>1-комн.</option>
                     <option>2-комн.</option>
@@ -22,11 +22,11 @@
                     <option>4-комн.</option>
                     <option>5-комн.</option>
                     <option>6 и более комн.</option>
-                </select>
+                </select> -->
                 <div class="input-range">
-                    <input type="text" size="6" placeholder="От">
+                    <input type="text" size="6" placeholder="От" [(ngModel)]="minValue" [ngModelOptions]="{standalone: true}">
                     - 
-                    <input type="text" size="6" placeholder="До">
+                    <input type="text" size="6" placeholder="До" [(ngModel)]="maxValue" [ngModelOptions]="{standalone: true}">
                     тг
                 </div>
             </div>
@@ -34,12 +34,12 @@
         </div>                
         <div class="checkboxes">
             <div>
-                <input type="checkbox">
+                <input type="checkbox" [(ngModel)]="hasPhoto" [ngModelOptions]="{standalone: true}">
                 <span>Есть фото</span>
             </div>
         </div>
     </form>
     <div>
-        <button>Найти</button>
+        <button (click)="onSearch()">Найти</button>
     </div>
 </section>

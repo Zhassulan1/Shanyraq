@@ -1,6 +1,6 @@
 <div class="main-container">
     <app-search></app-search>
-    <section class="hot-container">
+    <section class="hot-container" *ngIf="this.loaded"> 
         <div class="hot-header">
             <h1>Цены на недвижимость в Казахстане: горячие предложения</h1>
         </div>
@@ -12,11 +12,11 @@
                 <div class="hot-list hot-sale-list">
                     <div class="grid-container">
                         <ng-container *ngFor="let listing of listings">
-                            <a *ngIf="listing.type === 'Sale'">
+                            <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === 'sale'">
                                 <div class="grid-item">
-                                    <img [src]="listing.property.main_img">
+                                    <img [src]="listing.property.images[0].url">
                                     <h3>{{ listing.property.title }}</h3>
-                                    <p>Price: {{ listing.property.price }}</p>
+                                    <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
                         </ng-container>
@@ -30,11 +30,11 @@
                 <div class="hot-list hot-rent-list">
                     <div class="grid-container">
                         <ng-container *ngFor="let listing of listings">
-                            <a *ngIf="listing.type === 'Rent'">
+                            <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === 'rent'">
                                 <div class="grid-item">
-                                    <img [src]="listing.property.main_img">
+                                    <img [src]="listing.property.images[0].url">
                                     <h3>{{ listing.property.title }}</h3>
-                                    <p>Price: {{ listing.property.price }}</p>
+                                    <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
                         </ng-container>
@@ -50,11 +50,11 @@
                 <div class="hot-list hot-sale-list">
                     <div class="grid-container">
                         <ng-container *ngFor="let listing of listings">
-                            <a *ngIf="listing.type === 'Sale'">
+                            <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === type && listing.property.type === 'house'">
                                 <div class="grid-item">
-                                    <img [src]="listing.property.main_img">
+                                    <img [src]="listing.property.images[0].url">
                                     <h3>{{ listing.property.title }}</h3>
-                                    <p>Price: {{ listing.property.price }}</p>
+                                    <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
                         </ng-container>
@@ -68,11 +68,11 @@
                 <div class="hot-list hot-rent-list">
                     <div class="grid-container">
                         <ng-container *ngFor="let listing of listings">
-                            <a *ngIf="listing.type === 'Rent'">
+                            <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === type && listing.property.type === 'apartment'">
                                 <div class="grid-item">
-                                    <img [src]="listing.property.main_img">
+                                    <img [src]="listing.property.images[0].url">
                                     <h3>{{ listing.property.title }}</h3>
-                                    <p>Price: {{ listing.property.price }}</p>
+                                    <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
                         </ng-container>

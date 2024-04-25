@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule,NavigationEnd } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
 import { Listing } from '../models';
-import { LISTINGS } from '../fake-db';
+import { ListingService } from '../listing.service';
+// import { LISTINGS } from '../fake-db';
+
 
 @Component({
   selector: 'app-main',
@@ -17,12 +19,15 @@ export class MainComponent implements OnInit, OnDestroy {
   loaded: boolean = false;
   type: string | null= "";
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private listingService: ListingService) {}
 
   ngOnInit(): void {
     this.loaded = false;
-    this.listings = LISTINGS;
-    this.loaded = true;
+    this.listingService.getListings().subscribe((listings: Listing[]) => {
+      this.listings = listings;
+      console.log(this.listings)
+      this.loaded = true;
+    })
 
     this.route.paramMap.subscribe((params) => {
       this.type = String(params.get("listingType"))|| null;

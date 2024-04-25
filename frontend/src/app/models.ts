@@ -1,32 +1,41 @@
 export interface User {
     id: number;
     username: string;
+    contact_info: string;
 }
 
 export interface Property {
     id: number;
     title: string;
     type: string;
-    price: string;
+    price: number;
     area: number;
     rooms_count: number;
+    city: string,
+    address: string,
     description: string;
-    main_img: string; 
-    img: string; 
-    parameters: Record<string, any>; 
+    images: Images[]; 
+    parameters: Map<string, any>; 
 }
 
 export interface Listing {
     id: number;
-    user: User;
+    user: number;
     property: Property;
     type: string;
     listing_date: string; 
-    status: 'Active' | 'Not Active'; 
 }
 
 export interface Favorites {
-    id: number;
-    user: User;
-    listing: Listing;
+    user_id: number;
+    listing_id: number;
 }
+
+export interface Images {
+    url: string;
+}
+
+export interface Token {
+    access: string;
+    refresh: string;
+  }
