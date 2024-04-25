@@ -60,12 +60,13 @@ class ListingDetailSerializer(serializers.ModelSerializer):
 
 
 class FavoritesSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
     user_id = serializers.IntegerField()
     listing_id = serializers.IntegerField()
 
     def create(self, validated_data):
         user_id = validated_data.get('user_id')
-        print("Received user_id:", user_id)  # Add this line for debugging
+        print("Received user_id:", user_id)
 
         listing_id = validated_data.get('listing_id')
 
@@ -76,4 +77,3 @@ class FavoritesSerializer(serializers.Serializer):
             listing_id=listing_id
         )
         return favorite
-

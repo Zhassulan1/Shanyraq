@@ -19,6 +19,7 @@ import {NgForOf} from "@angular/common";
 export class DetailComponent implements OnInit{
   flatSale !: Listing;
   related_offers !:Listing[];
+  userId: number = 0;
   userName: string = "";
   userContact: string = "";
   loaded: boolean = false;
@@ -37,6 +38,7 @@ export class DetailComponent implements OnInit{
         this.loaded = false;
         this.listingService.getListing(listingId).subscribe((listing) => {
           this.flatSale = listing;
+          this.userId = listing.user;
           this.userService.getUser(listing.user).subscribe((user) => {
             this.userName = user.username,
             this.userContact = user.contact_info
@@ -49,6 +51,13 @@ export class DetailComponent implements OnInit{
     this.listingService.getListings().subscribe((listing) => {
       this.related_offers = listing.slice(0, 4);
     })
+  }
+
+  addFavorite() {
+    console.log(this.userId);
+    this.listingService.addFavorites(this.userId, this.flatSale.id).subscribe((listing) => {
+      console.log(listing);
+    } )
   }
 
 }

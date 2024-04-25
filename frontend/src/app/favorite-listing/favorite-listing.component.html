@@ -1,11 +1,11 @@
 <div class="listing-container">
-    <div *ngIf="loaded" class="property-block">
+    <div *ngIf="loaded && listings.length !== 0" class="property-block">
         <div *ngFor="let listing of listings" class="property-item">
             <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]">
                 <div class="property-details">
                     <img [src]="listing.property.images[0].url">
                     <div class="property-info">
-                        <h3>{{ listing.property.title }}</h3>
+                        <h3>{{ listing.property.rooms_count }} - комнатный {{ listing.property.type }}, {{ listing.property.area }} м<sup>2</sup> за {{ listing.property.price }} ₸.</h3>
                         <p>Цена: {{ listing.property.price }} тг</p>
                     </div>
                 </div>
@@ -21,4 +21,7 @@
     </div>
 </div>
 
+<div class="listing-container" *ngIf="listings.length === 0">
+    <h3>Нет Избранных</h3>
+</div>
  
