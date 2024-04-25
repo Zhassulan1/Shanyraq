@@ -1,0 +1,63 @@
+<div class="container page-wrapper">
+    <main class="container">
+            
+        <div class="page-top">
+
+            <div *ngIf="this.ads.length === 0" class="my-index-header">  
+            <h1>
+                    У вас пока нет объявлений на сайте
+                </h1>
+            </div>
+            
+            <div *ngIf="this.ads.length != 0" class="my-index-header">  
+                <h1>
+                    Ваши объявления
+                </h1>
+            </div>
+    
+
+            <div class="filler"></div>
+            
+            <div class="new-ad-btn">
+                <a href="/ad/new" class="btn btn-primary a-new-btn"> Подать объявление </a>
+            </div>
+            
+        </div>
+             
+        <div *ngIf="this.ads.length === 0" class="content">
+            <p>
+                Это легко исправить, <a href="/ad/new">подав их</a>.
+            </p>
+        </div>
+        
+        <div *ngIf="this.ads.length != 0" class="">
+            <br>
+            <br>
+            
+            <div *ngFor="let ad of ads">
+                <a [routerLink]="[ad.type, ad.id]" class="ad-listing-link">
+
+                    <div class="ad-list">
+                    
+                        <img src="{{ ad.img[0].url }}" class="side-img">
+                        <div class="details">
+                            <div class="general">
+                                {{ ad.rooms_count }} - комнатный {{ ad.type }}, {{ ad.area }} м<sup>2</sup> за {{ ad.price }} ₸.
+                            </div>
+                            
+                            <div class="additional">
+                                {{ ad.city }}, {{ ad.address }} <br>
+                                <!-- Добавлено {{ ad. }} -->
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </a>
+            </div>
+                
+        </div>
+
+    </main>
+</div>
+    
