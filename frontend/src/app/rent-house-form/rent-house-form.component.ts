@@ -17,7 +17,7 @@ import { FormService } from '../services/form.service';
   styleUrl: './rent-house-form.component.css'
 })
 export class RentHouseFormComponent {
-  @Input() userID!: string ;
+  @Input() userID!: number ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 

@@ -18,7 +18,7 @@ import { FormService } from '../services/form.service';
   styleUrl: './sell-house-form.component.css'
 })
 export class SellHouseFormComponent {
-  @Input() userID!: string ;
+  @Input() userID!: number ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 
@@ -84,7 +84,7 @@ export class SellHouseFormComponent {
     const listing = {
       user: this.userID,
       property: property,
-      type: 'sell',
+      type: 'sale',
     };
 
     console.log('listing: ', listing);

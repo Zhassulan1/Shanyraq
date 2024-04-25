@@ -20,7 +20,7 @@ export const SubmitURL: string = BackendURL;
   styleUrl: './rent-flat-form.component.css'
 })
 export class RentFlatFormComponent {
-  @Input() userID!: string ;
+  @Input() userID!: number ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 

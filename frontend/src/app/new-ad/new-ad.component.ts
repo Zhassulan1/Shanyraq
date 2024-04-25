@@ -17,7 +17,7 @@ import { FormService } from '../services/form.service';
 })
 export class NewAdComponent {
   formService: FormService = inject(FormService);
-  userID: string = this.formService.userID;
+  userID: number = this.formService.userID;
   
   currentCategory: string = "";
   currentSubcategory!: SubCategories;

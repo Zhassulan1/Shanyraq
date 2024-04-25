@@ -17,7 +17,7 @@ import { FormService } from '../services/form.service';
   styleUrl: './sell-flat-form.component.css'
 })
 export class SellFlatFormComponent {
-  @Input() userID!: string ;
+  @Input() userID!: number ;
   @Input() currentCategory: string = "";
   @Input() selectedSubcategory!: SubCategories;
 
@@ -79,7 +79,7 @@ export class SellFlatFormComponent {
     const listing = {
       user: this.userID,
       property: property,
-      type: 'sell',
+      type: 'sale',
     };
 
     console.log('listing: ', listing);
