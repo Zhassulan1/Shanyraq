@@ -55,7 +55,6 @@ export class SellHouseFormComponent {
 
   submitForm() {
     const address = this.formService.compileAddress(
-      this.applyForm.value.city?? '',
       this.applyForm.value.street_subdist ?? '',
       this.district?? '',
       this.subdistrict?? '',
@@ -84,10 +83,11 @@ export class SellHouseFormComponent {
     const listing = {
       user: this.userID,
       property: property,
-      type: 'rent',
+      type: 'sell',
     };
 
     console.log('listing: ', listing);
+    this.formService.submitListing(listing);
   }
 
 

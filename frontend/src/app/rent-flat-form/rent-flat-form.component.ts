@@ -57,7 +57,6 @@ export class RentFlatFormComponent {
 
   submitForm() {
     const address = this.formService.compileAddress(
-      this.applyForm.value.city ?? '',
       this.applyForm.value.street_subdist ?? '',
       this.district ?? '',
       this.subdistrict ?? '',
@@ -92,6 +91,8 @@ export class RentFlatFormComponent {
     };
 
     console.log('listing: ', listing);
+
+    this.formService.submitListing(listing);
   }
 
 
@@ -117,9 +118,6 @@ export class RentFlatFormComponent {
     }
   }
 
-
-
-  
 
   loadSubDists(district: DistrictInterface) {
     this.subdistricts = district.subdistricts;

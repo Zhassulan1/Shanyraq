@@ -24,13 +24,12 @@ export class FormService {
   userID: string = "123456789";
 
   compileAddress(
-    city: string,
     street_subdist: string,
     district: string,
     subdistrict: string,
     number: string
   ): string {
-    return street_subdist?? (district + ", " + subdistrict)?? '' + ", " + number?? '';
+    return district + ", " + subdistrict + ", " + number;
   }
 
   mainToJson(
@@ -42,10 +41,6 @@ export class FormService {
     address: string,
     description: string
   ): any {
-      console.log(
-        "General: ", type, price, area, rooms_count, city, address, description
-      );
-
       return {
         type: type,
         price: price,
@@ -58,12 +53,10 @@ export class FormService {
     
   }
 
-  submitForm(
-    building_type: string,
-    flat_floor: string,
-    flat_floor_total: string,
-    area_k: string
-  ) {
-    console.log("\nParameters: ", building_type, flat_floor, flat_floor_total, area_k);
+
+  submitListing(listing: any) {
+    const listingJson = JSON.stringify(listing);
+    console.log('listing: ', listingJson);
   }
+
 }

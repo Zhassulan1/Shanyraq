@@ -33,6 +33,7 @@
     <div *ngIf="this.selectedToLoad == 'sell.flat'">
 
         <app-sell-flat-form
+            [userID]="userID"
             [currentCategory]="currentCategory"
             [selectedSubcategory]="currentSubcategory"
         ></app-sell-flat-form>

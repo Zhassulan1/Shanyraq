@@ -54,7 +54,6 @@ export class RentHouseFormComponent {
 
   submitForm() {
     const address = this.formService.compileAddress(
-      this.applyForm.value.city?? '',
       this.applyForm.value.street_subdist ?? '',
       this.district?? '',
       this.subdistrict?? '',
@@ -87,6 +86,7 @@ export class RentHouseFormComponent {
     };
 
     console.log('listing: ', listing);
+    this.formService.submitListing(listing);
   }
 
 
