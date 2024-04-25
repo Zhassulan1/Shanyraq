@@ -59,7 +59,9 @@ class ListingDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class FavoritesSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
     user_id = serializers.IntegerField()
     listing_id = serializers.IntegerField()
 
@@ -76,4 +78,3 @@ class FavoritesSerializer(serializers.Serializer):
             listing_id=listing_id
         )
         return favorite
-

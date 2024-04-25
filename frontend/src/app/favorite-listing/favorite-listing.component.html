@@ -1,5 +1,5 @@
 <div class="listing-container">
-    <div *ngIf="loaded" class="property-block">
+    <div *ngIf="this.loaded" class="property-block">
         <div *ngFor="let listing of listings" class="property-item">
             <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]">
                 <div class="property-details">

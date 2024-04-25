@@ -7,9 +7,9 @@
 
   <div class="container-item">
     <div class="title">
-      <h1>{{flatSale.property.title}}</h1>
+      <h3>{{ flatSale.property.rooms_count }} - комнатный {{ flatSale.property.type }}, {{ flatSale.property.area }} м<sup>2</sup> за {{ flatSale.property.price }} ₸.</h3>
       <div class="favorite">
-        <button type="button">В избранном</button>
+         <button (click)="addFavorite()" type="button">В избранном</button>
       </div>
     </div>
   </div>

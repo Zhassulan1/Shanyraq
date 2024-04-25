@@ -108,15 +108,20 @@ def favorite_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', 'DELETE'])
-def favorite_detail(request, user_id=None, listing_id=None):
+def favorite_detail(request, id=None):
     if request.method == 'GET':
-        favorites = Favorites.objects.filter(user=user_id)
+        fav2 = Favorites.objects.all()
+        print("ALL: ", fav2)
+
+        favorites = Favorites.objects.filter(user=id)
         serializer = FavoritesSerializer(favorites, many=True)
+        
+        print("Filtered", serializer.data)
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
         try:
-            favorite = Favorites.objects.get(user=user_id, listing=listing_id)
+            favorite = Favorites.objects.get(id=id)
             favorite.delete()
             return Response({'deleted': True})
         except Favorites.DoesNotExist:

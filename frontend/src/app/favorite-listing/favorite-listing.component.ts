@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './favorite-listing.component.html',
   styleUrl: './favorite-listing.component.css'
 })
-export class FavoriteListingComponent {
+export class FavoriteListingComponent  implements OnInit{
   listings!: Listing[];
   favorites!: Favorites[];
   loaded: boolean = false;
@@ -36,11 +36,12 @@ export class FavoriteListingComponent {
     const access = localStorage.getItem("access") ?? '';
     const accessToken = this.helper.decodeToken(access);
     const userId = accessToken.user_id;
-    console.log("User Id:", userId);
+    console.log("UserId:", userId);
     this.loaded = false;
     
     this.listingService.getFavorites(userId).subscribe((favorites: Favorites[]) => {
       this.favorites = favorites;
+      console.log(favorites)
       
       const favoriteListingIds = this.favorites.map(favorite => favorite.listing_id);
 

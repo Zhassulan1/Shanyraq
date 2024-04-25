@@ -78,8 +78,10 @@ export class SellHouseFormComponent {
     );
 
     property.images = [
-      "https://www.bankrate.com/2023/06/12125257/buying-a-house-worth-it.jpg?auto=webp&optimize=high"
-   ]
+      "https://depanache.in/depanache-ui/uploads/2022/06/Contemporary-House-Interior-Design-3.webp",
+       "https://cdn-jnhgb.nitrocdn.com/IalqJYtnjPwQSxRKbBxEXfmghnPVEmPo/assets/images/optimized/rev-cbd1adf/vcinteriors.in/wp-content/uploads/2023/04/vc-living-sdininglatest-1-1600x1200.jpg"  ,
+      "https://www.bankrate.com/2023/06/12125257/buying-a-house-worth-it.jpg?auto=webp&optimize=high" 
+    ]
 
     property.parameters = this.compileParameters(
       this.applyForm.value.building_type ?? '',
