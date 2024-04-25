@@ -134,23 +134,23 @@
           <h2>Объявления, которые могут быть вам полезны</h2>
           <div class="related_items" >
             <div class="related_item" *ngFor="let flat of related_offers">
+              <a [routerLink]="['/', flat.type, flat.property.type, flat.id]">
               <div class="related_item_photo">
                 <img [src]="flat.property.images[0].url" alt="Photo">
               </div>
               <div class="related_item_inner">
+                {{ flat.property.rooms_count }} - комнатный {{ flat.property.type }}, {{ flat.property.area }} м<sup>2</sup> за {{ flat.property.price }} ₸.
                 <div class="related_item_inner-top">
-                  <div class="related_item_title">
-                    <a href="/">{{flat.property.title}}</a>
-                  </div>
-                  <div class="related_item_price">
-                    {{flat.property.price}} тг.
-                  </div>
+                      <div class="related_item_price">
+                        {{flat.property.price}} тг.
+                      </div>
                 </div>
+                  </div>
+                  <div class="related_item-inner-botton">
+                    <div class="related_item_city">{{flat.property.city}}</div>
+                  </div>
+                </a>
               </div>
-              <div class="related_item-inner-botton">
-                <div class="related_item_city">{{flat.property.city}}</div>
-              </div>
-            </div>
         </div>
       </div>
     </div>

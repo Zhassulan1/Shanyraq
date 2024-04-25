@@ -33,7 +33,7 @@
                             <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === 'rent'">
                                 <div class="grid-item">
                                     <img [src]="listing.property.images[0].url">
-                                    <h3>{{ listing.property.title }}</h3>
+                                    <h3>{{ listing.property.rooms_count }} - комнатный {{ listing.property.type }}, {{ listing.property.area }} м<sup>2</sup> за {{ listing.property.price }} ₸.</h3>
                                     <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
@@ -53,7 +53,7 @@
                             <a [routerLink]="['/', listing.type, listing.property.type, listing.property.id]" *ngIf="listing.type === type && listing.property.type === 'house'">
                                 <div class="grid-item">
                                     <img [src]="listing.property.images[0].url">
-                                    <h3>{{ listing.property.title }}</h3>
+                                    <h3>{{ listing.property.rooms_count }} - комнатный {{ listing.property.type }}, {{ listing.property.area }} м<sup>2</sup> за {{ listing.property.price }} ₸.</h3>
                                     <p>Price: {{ listing.property.price }} тг</p>
                                 </div>
                             </a>
