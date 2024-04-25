@@ -17,7 +17,8 @@ export interface Property {
     city: string,
     address: string,
     description: string;
-    img: Images[]; 
+    img: Images[];
+    properties: any; 
 }
 
 export const PropertyPlaceholder: Property[] = [
@@ -32,6 +33,7 @@ export const PropertyPlaceholder: Property[] = [
     address: '123 Main St', 
     description: 'Spacious 4 bedroom, 3 bathroom family home in quiet suburb',
     img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 2,
@@ -43,7 +45,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Beachtown', 
     address: '456 Ocean Ave',
     description: 'Charming 2 bedroom cottage just steps from the beach', 
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 3,
@@ -55,7 +58,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Big City',
     address: '789 Skyline Blvd', 
     description: 'Stunning 20th floor condo with amazing city views',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 4,
@@ -67,7 +71,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'College Town',
     address: '123 College Ave',
     description: 'Small fully furnished studio perfect for students or single tenants',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 5,
@@ -79,7 +84,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Urbanville',
     address: '456 Industrial Way',
     description: 'Huge open concept loft with high ceilings and large windows',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 6,
@@ -91,7 +97,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Suburbia',
     address: '789 Main St',
     description: 'Sleek 3 bedroom townhouse with rooftop patio',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 7,
@@ -103,7 +110,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Fancyville',
     address: '123 Rich Ln',
     description: 'Stunning 10 bedroom mansion on sprawling estate',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 8,
@@ -115,7 +123,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Mountain Town',
     address: '456 Pine Rd',
     description: 'Cozy 2 bedroom cabin on beautiful mountain lake',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}] 
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}] ,
+    properties: ''
   },
   {
     id: 9,
@@ -127,7 +136,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Funkytown',
     address: '789 Hip St',
     description: 'Sleek 1 bedroom apartment in trendy downtown area',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 10,
@@ -139,7 +149,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Farmland',
     address: '123 Country Rd',
     description: 'Charming 4 bedroom farmhouse on sprawling acreage', 
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 11,
@@ -151,7 +162,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Urbanopolis',
     address: '456 Skyline Dr', 
     description: 'Sleek 2 bedroom condo in luxury highrise building',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 12,
@@ -163,7 +175,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Coastline',
     address: '789 Ocean Blvd',
     description: 'Spacious 5 bedroom home with private dock',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 13,
@@ -175,7 +188,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Pleasantville',
     address: '123 Flower Ln',
     description: 'Adorable 1 bedroom cottage surrounded by gardens',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 14,
@@ -187,7 +201,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Hipsterville',
     address: '456 Industrial St',
     description: 'Stunning open concept loft in renovated warehouse',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   },
   {
     id: 15,
@@ -199,7 +214,8 @@ export const PropertyPlaceholder: Property[] = [
     city: 'Fancy Hills',
     address: '123 Elite Way',
     description: 'Breathtaking 6 bedroom villa with private pool',
-    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}]
+    img: [{url: 'https://www.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg'}],
+    properties: ''
   }
 ]
 
